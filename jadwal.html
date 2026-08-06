@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal | Bleackley</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Jadwal Pelajaran SMA Cinta Kasih Tzu Chi dan Jadwal Pribadi Bleackley.">
+    <meta name="author" content="Bleackley">
+
+    <!-- Google Fonts: Outfit (Heading) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS v4 (Browser Compiler) -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- Lucide Icons for clean vector icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Style Configurations -->
+    <link rel="stylesheet" type="text/tailwindcss" href="style.css">
+
+    <!-- Immediate theme application to prevent FOUC -->
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+    <!-- Web Application Logic Script (Vanilla JS) -->
+    <script src="app.js" defer></script>
+</head>
+
+<body
+    class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 font-sans min-h-screen transition-colors duration-300 flex flex-col selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-black">
+
+    <!-- Top Glow Overlay for dark mode premium aesthetic -->
+    <div
+        class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[300px] bg-gradient-to-b from-zinc-200/30 to-transparent dark:from-zinc-900/40 opacity-70 blur-3xl rounded-full">
+    </div>
+
+    <!-- Navigation Header (Glassmorphic) -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-md transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center space-x-2.5 group">
+                <div
+                    class="w-9 h-9 rounded-lg bg-zinc-900 dark:bg-white flex items-center justify-center transition-all duration-300 group-hover:rotate-12">
+                    <span class="text-white dark:text-black font-display font-extrabold text-lg">F</span>
+                </div>
+                <span
+                    class="font-display font-bold text-xl tracking-tight text-zinc-900 dark:text-white">Bleackley</span>
+            </a>
+
+            <!-- Desktop Navigation Menu -->
+            <nav
+                class="hidden md:flex items-center space-x-1 bg-zinc-100 dark:bg-zinc-900/60 p-1.5 rounded-full border border-zinc-200/50 dark:border-zinc-800/50">
+                <a href="index.html" id="nav-dashboard"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Dashboard
+                </a>
+                <a href="profil.html" id="nav-profil"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Profil
+                </a>
+                <a href="informatika.html" id="nav-informatika"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Informatika
+                </a>
+                <a href="bahasa.html" id="nav-bahasa-indonesia"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Bahasa Indonesia
+                </a>
+                <a href="jadwal.html" id="nav-jadwal"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 shadow-sm">
+                    Jadwal
+                </a>
+            </nav>
+
+            <!-- Utility Buttons (Theme Toggle & Mobile Menu Toggle) -->
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" onclick="toggleTheme()"
+                    class="p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 transition-all duration-200"
+                    aria-label="Toggle dark mode">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-zinc-100"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-zinc-900"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-toggle" onclick="toggleMobileMenu()"
+                    class="md:hidden p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200"
+                    aria-label="Open navigation menu">
+                    <i data-lucide="menu" id="menu-icon" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 px-4 py-4 space-y-2 transition-all duration-300">
+            <a href="index.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> <span>Dashboard</span>
+            </a>
+            <a href="profil.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="user" class="w-5 h-5"></i> <span>Profil</span>
+            </a>
+            <a href="informatika.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="binary" class="w-5 h-5"></i> <span>Informatika</span>
+            </a>
+            <a href="bahasa.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="book-open" class="w-5 h-5"></i> <span>Bahasa Indonesia</span>
+            </a>
+            <a href="jadwal.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3 bg-zinc-100 dark:bg-zinc-900">
+                <i data-lucide="calendar-days" class="w-5 h-5"></i> <span>Jadwal</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative z-10">
+
+        <!-- ================= JADWAL SECTION ================= -->
+        <!-- ================= JADWAL PELAJARAN ================= -->
+        <div class="mb-12">
+            <div class="text-center mb-10">
+                <h1
+                    class="font-display font-extrabold text-3xl md:text-4xl tracking-tight text-zinc-900 dark:text-zinc-50">
+                    Jadwal Pelajaran Kelas XI.3
+                </h1>
+                <p class="text-zinc-500 dark:text-zinc-400 mt-2 text-sm md:text-base">
+                    Semester Ganjil Tahun Pelajaran 2026 / 2027
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- SENIN -->
+                <div
+                    class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+                    <div class="bg-blue-600 dark:bg-blue-700 text-white px-5 py-3.5 flex items-center justify-between">
+                        <h2 class="font-display font-bold text-lg">📅 Senin</h2>
+                    </div>
+                    <div class="overflow-x-auto flex-grow">
+                        <table class="w-full text-sm text-left">
+                            <thead
+                                class="bg-zinc-50 dark:bg-zinc-800/50 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-800">
+                                <tr>
+                                    <th class="p-3 font-semibold">Jam</th>
+                                    <th class="p-3 font-semibold">Pelajaran</th>
+                                    <th class="p-3 font-semibold text-center">Guru</th>
+                                </tr>
+                            </thead>
+                            <tbody
+                                class="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-700 dark:text-zinc-300">
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">06.30-07.30</td>
+                                    <td colspan="2" class="p-3 italic text-zinc-500 dark:text-zinc-400">Upacara /
+                                        Pendampingan Wali Kelas</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">07.30-08.15</td>
+                                    <td class="p-3">Sosiologi</td>
+                                    <td class="p-3 text-center">Cornel Kaban</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">08.15-09.00</td>
+                                    <td class="p-3">Sosiologi</td>
+                                    <td class="p-3 text-center">Cornel Kaban</td>
+                                </tr>
+                                <tr
+                                    class="bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 font-semibold">
+                                    <td colspan="3" class="text-center p-2 text-xs uppercase tracking-wider">ISTIRAHAT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">09.30-10.10</td>
+                                    <td class="p-3">Mandarin</td>
+                                    <td class="p-3 text-center">Junaidi</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">10.10-10.50</td>
+                                    <td class="p-3">Mandarin</td>
+                                    <td class="p-3 text-center">Junaidi</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">10.50-11.30</td>
+                                    <td class="p-3">Budi Pekerti</td>
+                                    <td class="p-3 text-center">Suwarni</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">11.30-12.10</td>
+                                    <td class="p-3">B. Humanis</td>
+                                    <td class="p-3 text-center">Iriwaty Japutra</td>
+                                </tr>
+                                <tr
+                                    class="bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 font-semibold">
+                                    <td colspan="3" class="text-center p-2 text-xs uppercase tracking-wider">ISTIRAHAT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">12.40-13.20</td>
+                                    <td class="p-3">Matematika Wajib</td>
+                                    <td class="p-3 text-center">Jefry Corpry YH</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">13.20-14.00</td>
+                                    <td class="p-3">Ekonomi</td>
+                                    <td class="p-3 text-center">Debie Lola</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">14.00-14.40</td>
+                                    <td class="p-3">Ekonomi</td>
+                                    <td class="p-3 text-center">Debie Lola</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- SELASA -->
+                <div
+                    class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+                    <div
+                        class="bg-emerald-600 dark:bg-emerald-700 text-white px-5 py-3.5 flex items-center justify-between">
+                        <h2 class="font-display font-bold text-lg">📅 Selasa</h2>
+                    </div>
+                    <div class="overflow-x-auto flex-grow">
+                        <table class="w-full text-sm text-left">
+                            <thead
+                                class="bg-zinc-50 dark:bg-zinc-800/50 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-800">
+                                <tr>
+                                    <th class="p-3 font-semibold">Jam</th>
+                                    <th class="p-3 font-semibold">Pelajaran</th>
+                                    <th class="p-3 font-semibold text-center">Guru</th>
+                                </tr>
+                            </thead>
+                            <tbody
+                                class="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-700 dark:text-zinc-300">
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">06.30-06.45</td>
+                                    <td colspan="2" class="p-3 italic text-zinc-500 dark:text-zinc-400">Pembiasaan Awal
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">06.45-07.30</td>
+                                    <td class="p-3">Agama</td>
+                                    <td class="p-3 text-center">Suwarni</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">07.30-08.15</td>
+                                    <td class="p-3">Agama</td>
+                                    <td class="p-3 text-center">Suwarni</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">08.15-09.00</td>
+                                    <td class="p-3">Bahasa Indonesia</td>
+                                    <td class="p-3 text-center">Ruly Mediana</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">09.00-09.45</td>
+                                    <td class="p-3">Bahasa Indonesia</td>
+                                    <td class="p-3 text-center">Ruly Mediana</td>
+                                </tr>
+                                <tr
+                                    class="bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 font-semibold">
+                                    <td colspan="3" class="text-center p-2 text-xs uppercase tracking-wider">ISTIRAHAT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">10.05-10.50</td>
+                                    <td class="p-3">Geografi</td>
+                                    <td class="p-3 text-center">Nur Fajar Sidik</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">10.50-11.35</td>
+                                    <td class="p-3">Geografi</td>
+                                    <td class="p-3 text-center">Nur Fajar Sidik</td>
+                                </tr>
+                                <tr
+                                    class="bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 font-semibold">
+                                    <td colspan="3" class="text-center p-2 text-xs uppercase tracking-wider">ISTIRAHAT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">12.00-12.40</td>
+                                    <td class="p-3">Ekonomi</td>
+                                    <td class="p-3 text-center">Debie Lola</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">12.40-13.20</td>
+                                    <td class="p-3">Ekonomi</td>
+                                    <td class="p-3 text-center">Debie Lola</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">13.20-14.00</td>
+                                    <td class="p-3">Sosiologi</td>
+                                    <td class="p-3 text-center">Cornel Kaban</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">14.00-14.30</td>
+                                    <td class="p-3">Sosiologi</td>
+                                    <td class="p-3 text-center">Cornel Kaban</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- RABU -->
+                <div
+                    class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+                    <div
+                        class="bg-purple-600 dark:bg-purple-700 text-white px-5 py-3.5 flex items-center justify-between">
+                        <h2 class="font-display font-bold text-lg">📅 Rabu</h2>
+                    </div>
+                    <div class="overflow-x-auto flex-grow">
+                        <table class="w-full text-sm text-left">
+                            <thead
+                                class="bg-zinc-50 dark:bg-zinc-800/50 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-800">
+                                <tr>
+                                    <th class="p-3 font-semibold">Jam</th>
+                                    <th class="p-3 font-semibold">Pelajaran</th>
+                                    <th class="p-3 font-semibold text-center">Guru</th>
+                                </tr>
+                            </thead>
+                            <tbody
+                                class="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-700 dark:text-zinc-300">
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">06.30-06.45</td>
+                                    <td colspan="2" class="p-3 italic text-zinc-500 dark:text-zinc-400">Pembiasaan Awal
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">06.45-07.30</td>
+                                    <td class="p-3">Informatika</td>
+                                    <td class="p-3 text-center">Yahya Yanuardi</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">07.30-08.15</td>
+                                    <td class="p-3">Informatika</td>
+                                    <td class="p-3 text-center">Yahya Yanuardi</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">08.15-09.00</td>
+                                    <td class="p-3">Mandarin</td>
+                                    <td class="p-3 text-center">Junaidi</td>
+                                </tr>
+                                <tr
+                                    class="bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 font-semibold">
+                                    <td colspan="3" class="text-center p-2 text-xs uppercase tracking-wider">ISTIRAHAT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">09.30-10.10</td>
+                                    <td class="p-3">Mandarin</td>
+                                    <td class="p-3 text-center">Junaidi</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">10.10-10.50</td>
+                                    <td class="p-3">Sosiologi</td>
+                                    <td class="p-3 text-center">Cornel Kaban</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">10.50-11.30</td>
+                                    <td class="p-3">Bahasa Indonesia</td>
+                                    <td class="p-3 text-center">Ruly Mediana</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">11.30-12.10</td>
+                                    <td class="p-3">Kokurikuler</td>
+                                    <td class="p-3 text-center">Debie Lola</td>
+                                </tr>
+                                <tr
+                                    class="bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 font-semibold">
+                                    <td colspan="3" class="text-center p-2 text-xs uppercase tracking-wider">ISTIRAHAT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">12.40-13.20</td>
+                                    <td class="p-3">Sejarah</td>
+                                    <td class="p-3 text-center">Cornel Kaban</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">13.20-14.00</td>
+                                    <td class="p-3">Sejarah</td>
+                                    <td class="p-3 text-center">Cornel Kaban</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">14.00-14.40</td>
+                                    <td class="p-3">Seni Budaya</td>
+                                    <td class="p-3 text-center">Diyana</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">14.40-15.20</td>
+                                    <td class="p-3">Seni Budaya</td>
+                                    <td class="p-3 text-center">Diyana</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- KAMIS -->
+                <div
+                    class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+                    <div
+                        class="bg-orange-600 dark:bg-orange-700 text-white px-5 py-3.5 flex items-center justify-between">
+                        <h2 class="font-display font-bold text-lg">📅 Kamis</h2>
+                    </div>
+                    <div class="overflow-x-auto flex-grow">
+                        <table class="w-full text-sm text-left">
+                            <thead
+                                class="bg-zinc-50 dark:bg-zinc-800/50 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-800">
+                                <tr>
+                                    <th class="p-3 font-semibold">Jam</th>
+                                    <th class="p-3 font-semibold">Pelajaran</th>
+                                    <th class="p-3 font-semibold text-center">Guru</th>
+                                </tr>
+                            </thead>
+                            <tbody
+                                class="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-700 dark:text-zinc-300">
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">06.30-06.45</td>
+                                    <td colspan="2" class="p-3 italic text-zinc-500 dark:text-zinc-400">Pembiasaan Awal
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">06.45-07.30</td>
+                                    <td class="p-3">Informatika</td>
+                                    <td class="p-3 text-center">Yahya Yanuardi</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">07.30-08.15</td>
+                                    <td class="p-3">Informatika</td>
+                                    <td class="p-3 text-center">Yahya Yanuardi</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">08.15-09.00</td>
+                                    <td class="p-3">Matematika Wajib</td>
+                                    <td class="p-3 text-center">Jefry Corpry YH</td>
+                                </tr>
+                                <tr
+                                    class="bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 font-semibold">
+                                    <td colspan="3" class="text-center p-2 text-xs uppercase tracking-wider">ISTIRAHAT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">09.30-10.15</td>
+                                    <td class="p-3">Matematika Wajib</td>
+                                    <td class="p-3 text-center">Jefry Corpry YH</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">10.15-11.00</td>
+                                    <td class="p-3">PKN</td>
+                                    <td class="p-3 text-center">Agus Salim</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">11.00-11.45</td>
+                                    <td class="p-3">PKN</td>
+                                    <td class="p-3 text-center">Agus Salim</td>
+                                </tr>
+                                <tr
+                                    class="bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 font-semibold">
+                                    <td colspan="3" class="text-center p-2 text-xs uppercase tracking-wider">ISTIRAHAT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">12.30-13.15</td>
+                                    <td class="p-3">Bahasa Inggris</td>
+                                    <td class="p-3 text-center">Yuli Hastuti</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">13.15-13.55</td>
+                                    <td class="p-3">Bahasa Inggris</td>
+                                    <td class="p-3 text-center">Yuli Hastuti</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">13.55-14.35</td>
+                                    <td class="p-3">Bahasa Inggris</td>
+                                    <td class="p-3 text-center">Yuli Hastuti</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">14.35-15.15</td>
+                                    <td class="p-3">Ekonomi</td>
+                                    <td class="p-3 text-center">Debie Lola</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- JUMAT -->
+            <div class="mt-6">
+                <div
+                    class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 rounded-2xl shadow-sm overflow-hidden">
+                    <div class="bg-red-600 dark:bg-red-700 text-white px-5 py-3.5 flex items-center justify-between">
+                        <h2 class="font-display font-bold text-lg">📅 Jumat</h2>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                            <thead
+                                class="bg-zinc-50 dark:bg-zinc-800/50 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-800">
+                                <tr>
+                                    <th class="p-3 font-semibold">Jam</th>
+                                    <th class="p-3 font-semibold">Pelajaran</th>
+                                    <th class="p-3 font-semibold text-center">Guru</th>
+                                </tr>
+                            </thead>
+                            <tbody
+                                class="divide-y divide-zinc-200 dark:divide-zinc-800 text-zinc-700 dark:text-zinc-300">
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">06.30-07.15</td>
+                                    <td colspan="2" class="p-3 italic text-zinc-500 dark:text-zinc-400">Jumat Bersih /
+                                        Sehat / Literasi / Public Speaking</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">07.15-08.00</td>
+                                    <td class="p-3">PKWU</td>
+                                    <td class="p-3 text-center">Debie Lola</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">08.00-08.45</td>
+                                    <td class="p-3">PKWU</td>
+                                    <td class="p-3 text-center">Debie Lola</td>
+                                </tr>
+                                <tr
+                                    class="bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 font-semibold">
+                                    <td colspan="3" class="text-center p-2 text-xs uppercase tracking-wider">ISTIRAHAT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">09.15-10.00</td>
+                                    <td class="p-3">PJOK</td>
+                                    <td class="p-3 text-center">Sopyan</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">10.00-10.45</td>
+                                    <td class="p-3">PJOK</td>
+                                    <td class="p-3 text-center">Sopyan</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">10.45-11.30</td>
+                                    <td class="p-3">Bimbingan Konseling</td>
+                                    <td class="p-3 text-center">Katarina</td>
+                                </tr>
+                                <tr
+                                    class="bg-blue-50 dark:bg-blue-950/30 text-blue-800 dark:text-blue-400 font-semibold">
+                                    <td colspan="3" class="text-center p-2 text-xs uppercase tracking-wider">JUMAT
+                                        IBADAH</td>
+                                </tr>
+                                <tr
+                                    class="bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 font-semibold">
+                                    <td colspan="3" class="text-center p-2 text-xs uppercase tracking-wider">ISTIRAHAT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">13.00-13.45</td>
+                                    <td class="p-3">Geografi</td>
+                                    <td class="p-3 text-center">Nur Fajar Sidik</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs">13.45-14.30</td>
+                                    <td class="p-3">Geografi</td>
+                                    <td class="p-3 text-center">Nur Fajar Sidik</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- ================= JADWAL PRIBADI ================= -->
+        <div class="mt-12">
+            <div class="border-b border-zinc-200 dark:border-zinc-800 pb-4 mb-6">
+                <h2 class="font-display font-bold text-3xl">
+                    🏃 Jadwal Pribadi
+                </h2>
+                <p class="text-zinc-500 dark:text-zinc-400 mt-2">
+                    Jadwal latihan mingguan.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+                <!-- Senin -->
+                <div class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 rounded-xl p-5">
+                    <h3 class="font-bold text-xl mb-3">📅 Senin</h3>
+                    <p class="text-lg font-semibold text-blue-600 dark:text-blue-400">
+                        🏃 Atletik
+                    </p>
+                </div>
+
+                <!-- Selasa -->
+                <div class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 rounded-xl p-5">
+                    <h3 class="font-bold text-xl mb-3">📅 Selasa</h3>
+                    <p class="text-lg font-semibold text-orange-600 dark:text-orange-400">
+                        🏀 Basket
+                    </p>
+                </div>
+
+                <!-- Rabu -->
+                <div class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 rounded-xl p-5">
+                    <h3 class="font-bold text-xl mb-3">📅 Rabu</h3>
+                    <p class="text-lg font-semibold text-blue-600 dark:text-blue-400">
+                        🏃 Atletik
+                    </p>
+                </div>
+
+                <!-- Kamis -->
+                <div class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 rounded-xl p-5">
+                    <h3 class="font-bold text-xl mb-3">📅 Kamis</h3>
+                    <p class="text-lg font-semibold text-orange-600 dark:text-orange-400">
+                        🏀 Basket
+                    </p>
+                </div>
+
+                <!-- Jumat -->
+                <div class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 rounded-xl p-5">
+                    <h3 class="font-bold text-xl mb-3">📅 Jumat</h3>
+                    <p class="text-lg font-semibold text-orange-600 dark:text-orange-400">
+                        🏀 Basket
+                    </p>
+                </div>
+
+                <!-- Sabtu -->
+                <div class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 rounded-xl p-5">
+                    <h3 class="font-bold text-xl mb-3">📅 Sabtu</h3>
+                    <p class="text-lg font-semibold text-emerald-600 dark:text-emerald-400">
+                        😴 Istirahat
+                    </p>
+                </div>
+
+                <!-- Minggu -->
+                <div class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 rounded-xl p-5">
+                    <h3 class="font-bold text-xl mb-3">📅 Minggu</h3>
+                    <p class="text-lg font-semibold text-emerald-600 dark:text-emerald-400">
+                        😴 Istirahat
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        </section>
+    </main>
+
+    <!-- Global Footer -->
+    <footer
+        class="border-t border-zinc-200 dark:border-zinc-850 bg-zinc-100 dark:bg-zinc-950 py-8 relative z-10 transition-colors duration-300">
+        <div
+            class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Brand description -->
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-zinc-900 dark:bg-white flex items-center justify-center">
+                    <span class="text-white dark:text-black font-display font-extrabold text-sm">F</span>
+                </div>
+                <span class="font-display font-semibold text-sm tracking-tight">&copy; 2026 Bleackley. | SMA Cinta Kasih
+                    Tzu Chi.</span>
+            </div>
+
+            <!-- Social links (Footer) -->
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="GitHub">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="LinkedIn">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="Instagram">
+                    <i data-lucide="instagram" class="w-4 h-4"></i>
+                </a>
+                <a href="mailto:Bleackley@email.com"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                    title="Kirim Email">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

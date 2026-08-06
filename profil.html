@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya | Bleackley</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Kenali latar belakang, minat teknologi, dan keahlian Bleackley. Pelajar & Calon Web Developer.">
+    <meta name="author" content="Bleackley">
+
+    <!-- Google Fonts: Outfit (Heading) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS v4 (Browser Compiler) -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- Lucide Icons for clean vector icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Style Configurations -->
+    <link rel="stylesheet" type="text/tailwindcss" href="style.css">
+
+    <!-- Immediate theme application to prevent FOUC -->
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+    <!-- Web Application Logic Script (Vanilla JS) -->
+    <script src="app.js" defer></script>
+</head>
+
+<body
+    class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 font-sans min-h-screen transition-colors duration-300 flex flex-col selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-black">
+
+    <!-- Top Glow Overlay for dark mode premium aesthetic -->
+    <div
+        class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[300px] bg-gradient-to-b from-zinc-200/30 to-transparent dark:from-zinc-900/40 opacity-70 blur-3xl rounded-full">
+    </div>
+
+    <!-- Navigation Header (Glassmorphic) -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-md transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center space-x-2.5 group">
+                <div
+                    class="w-9 h-9 rounded-lg bg-zinc-900 dark:bg-white flex items-center justify-center transition-all duration-300 group-hover:rotate-12">
+                    <span class="text-white dark:text-black font-display font-extrabold text-lg">F</span>
+                </div>
+                <span
+                    class="font-display font-bold text-xl tracking-tight text-zinc-900 dark:text-white">Bleackley</span>
+            </a>
+
+            <!-- Desktop Navigation Menu -->
+            <nav
+                class="hidden md:flex items-center space-x-1 bg-zinc-100 dark:bg-zinc-900/60 p-1.5 rounded-full border border-zinc-200/50 dark:border-zinc-800/50">
+                <a href="index.html" id="nav-dashboard"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Dashboard
+                </a>
+                <a href="profil.html" id="nav-profil"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 shadow-sm">
+                    Profil
+                </a>
+                <a href="informatika.html" id="nav-informatika"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Informatika
+                </a>
+                <a href="bahasa.html" id="nav-bahasa-indonesia"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Bahasa Indonesia
+                </a>
+                <a href="jadwal.html" id="nav-jadwal"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Jadwal
+                </a>
+            </nav>
+
+            <!-- Utility Buttons (Theme Toggle & Mobile Menu Toggle) -->
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" onclick="toggleTheme()"
+                    class="p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 transition-all duration-200"
+                    aria-label="Toggle dark mode">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-zinc-100"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-zinc-900"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-toggle" onclick="toggleMobileMenu()"
+                    class="md:hidden p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200"
+                    aria-label="Open navigation menu">
+                    <i data-lucide="menu" id="menu-icon" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 px-4 py-4 space-y-2 transition-all duration-300">
+            <a href="index.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> <span>Dashboard</span>
+            </a>
+            <a href="profil.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3 bg-zinc-100 dark:bg-zinc-900">
+                <i data-lucide="user" class="w-5 h-5"></i> <span>Profil</span>
+            </a>
+            <a href="informatika.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="binary" class="w-5 h-5"></i> <span>Informatika</span>
+            </a>
+            <a href="bahasa.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="book-open" class="w-5 h-5"></i> <span>Bahasa Indonesia</span>
+            </a>
+            <a href="jadwal.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="calendar-days" class="w-5 h-5"></i> <span>Jadwal</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative z-10">
+
+        <!-- ================= PROFIL SECTION ================= -->
+        <section id="profil-section" class="section-fade space-y-12">
+            <div class="border-b border-zinc-200 dark:border-zinc-800 pb-6">
+                <h1 class="font-display font-extrabold text-3xl sm:text-4xl tracking-tight">Tentang Saya</h1>
+                <p class="text-zinc-500 dark:text-zinc-400 text-sm mt-1">Kenali latar belakang, minat teknologi, dan
+                    keahlian Bleackley.</p>
+            </div>
+
+            <!-- ================= MINI GAME: TEBAK ANGKA ================= -->
+            <section id="number-guess-game"
+                class="section-fade space-y-8 mt-16 pt-12 border-t border-zinc-200 dark:border-zinc-800">
+                <div
+                    class="border-b border-zinc-200 dark:border-zinc-800 pb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h2
+                            class="font-display font-extrabold text-2xl sm:text-3xl tracking-tight flex items-center space-x-3">
+                            <i data-lucide="hash" class="w-7 h-7 text-emerald-500"></i>
+                            <span>Mini Game: Tebak Angka</span>
+                        </h2>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-sm mt-1">Tebak angka rahasia dari 1 sampai 100!
+                        </p>
+                    </div>
+                    <div
+                        class="flex items-center space-x-4 bg-zinc-100 dark:bg-zinc-900 px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-sm">
+                        <div>Percobaan: <span id="guess-count" class="font-bold text-zinc-900 dark:text-white">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="max-w-xl mx-auto border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/30 p-6 sm:p-8 rounded-2xl shadow-sm space-y-6 text-center">
+                    <p class="text-zinc-600 dark:text-zinc-300 text-sm sm:text-base">Komputer telah memilih angka antara
+                        <strong>1 - 100</strong>. Coba tebak!
+                    </p>
+
+                    <!-- Form Input Tebakan -->
+                    <div class="flex gap-2 max-w-sm mx-auto">
+                        <input type="number" id="user-guess" min="1" max="100" placeholder="Masukkan angka..."
+                            class="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-zinc-900 dark:focus:border-white transition-colors text-center font-bold">
+                        <button onclick="checkGuess()"
+                            class="px-5 py-2.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 text-xs font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-colors cursor-pointer">
+                            Tebak!
+                        </button>
+                    </div>
+
+                    <!-- Kotak Petunjuk / Hasil -->
+                    <div id="guess-result-box"
+                        class="hidden p-4 rounded-xl text-sm font-medium space-y-1 bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800">
+                        <div id="guess-feedback" class="font-bold text-base"></div>
+                    </div>
+
+                    <!-- Tombol Reset Game -->
+                    <div>
+                        <button onclick="resetNumberGame()"
+                            class="text-xs text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 underline cursor-pointer">
+                            Mulai Game Baru / Reset
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Script Game Tebak Angka -->
+            <script>
+                let secretNumber = Math.floor(Math.random() * 100) + 1;
+                let attempts = 0;
+
+                function checkGuess() {
+                    const inputElem = document.getElementById('user-guess');
+                    const resultBox = document.getElementById('guess-result-box');
+                    const feedback = document.getElementById('guess-feedback');
+                    const countElem = document.getElementById('guess-count');
+
+                    const userValue = parseInt(inputElem.value);
+
+                    if (isNaN(userValue) || userValue < 1 || userValue > 100) {
+                        resultBox.classList.remove('hidden');
+                        feedback.textContent = "⚠️ Masukkan angka yang valid antara 1 sampai 100!";
+                        feedback.className = "font-bold text-base text-amber-500";
+                        return;
+                    }
+
+                    attempts++;
+                    countElem.textContent = attempts;
+                    resultBox.classList.remove('hidden');
+
+                    if (userValue === secretNumber) {
+                        feedback.textContent = `🎉 Luar biasa! Kamu berhasil menebak angka ${secretNumber} dalam ${attempts} percobaan.`;
+                        feedback.className = "font-bold text-base text-emerald-500";
+                    } else if (userValue < secretNumber) {
+                        feedback.textContent = "📈 Terlalu kecil! Coba angka yang lebih besar.";
+                        feedback.className = "font-bold text-base text-blue-500";
+                    } else {
+                        feedback.textContent = "📉 Terlalu besar! Coba angka yang lebih kecil.";
+                        feedback.className = "font-bold text-base text-rose-500";
+                    }
+
+                    inputElem.value = '';
+                    inputElem.focus();
+                }
+
+                function resetNumberGame() {
+                    secretNumber = Math.floor(Math.random() * 100) + 1;
+                    attempts = 0;
+                    document.getElementById('guess-count').textContent = '0';
+                    document.getElementById('user-guess').value = '';
+                    document.getElementById('guess-result-box').classList.add('hidden');
+                }
+            </script>
+            <!-- ================= MINI GAME: BATU GUNTING KERTAS ================= -->
+            <section id="game-section"
+                class="section-fade space-y-8 mt-16 pt-12 border-t border-zinc-200 dark:border-zinc-800">
+                <div
+                    class="border-b border-zinc-200 dark:border-zinc-800 pb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h2
+                            class="font-display font-extrabold text-2xl sm:text-3xl tracking-tight flex items-center space-x-3">
+                            <i data-lucide="swords" class="w-7 h-7 text-zinc-500"></i>
+                            <span>Mini Game: Batu Gunting Kertas</span>
+                        </h2>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-sm mt-1">Lawan komputer dan raih skor tertinggi
+                            Anda!</p>
+                    </div>
+                    <div
+                        class="flex items-center space-x-4 bg-zinc-100 dark:bg-zinc-900 px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-sm">
+                        <div>Skor Kamu: <span id="player-score" class="font-bold text-zinc-900 dark:text-white">0</span>
+                        </div>
+                        <div class="border-l border-zinc-300 dark:border-zinc-700 h-4"></div>
+                        <div>Komputer: <span id="computer-score"
+                                class="font-bold text-zinc-900 dark:text-white">0</span></div>
+                    </div>
+                </div>
+
+                <div
+                    class="max-w-xl mx-auto border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/30 p-6 sm:p-8 rounded-2xl shadow-sm space-y-6 text-center">
+                    <p class="text-zinc-600 dark:text-zinc-300 text-sm sm:text-base">Pilih salah satu di bawah ini:</p>
+
+                    <!-- Pilihan Tombol -->
+                    <div class="grid grid-cols-3 gap-3">
+                        <button onclick="playGame('batu')"
+                            class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-800 font-semibold transition-colors cursor-pointer flex flex-col items-center gap-2">
+                            <span class="text-2xl">🧱</span>
+                            <span class="text-xs">Batu</span>
+                        </button>
+                        <button onclick="playGame('gunting')"
+                            class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-800 font-semibold transition-colors cursor-pointer flex flex-col items-center gap-2">
+                            <span class="text-2xl">✂️</span>
+                            <span class="text-xs">Gunting</span>
+                        </button>
+                        <button onclick="playGame('kertas')"
+                            class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-800 font-semibold transition-colors cursor-pointer flex flex-col items-center gap-2">
+                            <span class="text-2xl">📄</span>
+                            <span class="text-xs">Kertas</span>
+                        </button>
+                    </div>
+
+                    <!-- Hasil Pertandingan -->
+                    <div id="game-result-box"
+                        class="hidden p-4 rounded-xl text-sm font-medium space-y-1 bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800">
+                        <div id="choices-text" class="text-zinc-500 text-xs"></div>
+                        <div id="outcome-text" class="font-bold text-base"></div>
+                    </div>
+
+                    <!-- Tombol Reset -->
+                    <div>
+                        <button onclick="resetScore()"
+                            class="text-xs text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 underline cursor-pointer">
+                            Reset Skor
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Script Khusus Game (Langsung di HTML agar tidak gagal load) -->
+            <script>
+                let playerScore = 0;
+                let computerScore = 0;
+
+                function playGame(playerChoice) {
+                    const choices = ['batu', 'gunting', 'kertas'];
+                    const emojis = { batu: '🧱 Batu', gunting: '✂️ Gunting', kertas: '📄 Kertas' };
+
+                    const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+                    const resultBox = document.getElementById('game-result-box');
+                    const choicesText = document.getElementById('choices-text');
+                    const outcomeText = document.getElementById('outcome-text');
+                    const pScoreElem = document.getElementById('player-score');
+                    const cScoreElem = document.getElementById('computer-score');
+
+                    resultBox.classList.remove('hidden');
+                    choicesText.textContent = `Kamu memilih ${emojis[playerChoice]} vs Komputer memilih ${emojis[computerChoice]}`;
+
+                    if (playerChoice === computerChoice) {
+                        outcomeText.textContent = "🤝 Seri!";
+                        outcomeText.className = "font-bold text-base text-zinc-500";
+                    } else if (
+                        (playerChoice === 'batu' && computerChoice === 'gunting') ||
+                        (playerChoice === 'gunting' && computerChoice === 'kertas') ||
+                        (playerChoice === 'kertas' && computerChoice === 'batu')
+                    ) {
+                        playerScore++;
+                        pScoreElem.textContent = playerScore;
+                        outcomeText.textContent = "🎉 Kamu Menang!";
+                        outcomeText.className = "font-bold text-base text-emerald-500";
+                    } else {
+                        computerScore++;
+                        cScoreElem.textContent = computerScore;
+                        outcomeText.textContent = "💻 Komputer Menang!";
+                        outcomeText.className = "font-bold text-base text-rose-500";
+                    }
+                }
+
+                function resetScore() {
+                    playerScore = 0;
+                    computerScore = 0;
+                    document.getElementById('player-score').textContent = '0';
+                    document.getElementById('computer-score').textContent = '0';
+                    document.getElementById('game-result-box').classList.add('hidden');
+                }
+            </script>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <!-- Left column: Profile card -->
+                <div class="lg:col-span-4 space-y-6">
+                    <div
+                        class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/30 p-6 rounded-2xl text-center space-y-4 shadow-sm">
+                        <!-- Custom Generated Avatar -->
+                        <div
+                            class="mx-auto w-32 h-32 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900 flex items-center justify-center">
+                            <img src="assets/images/KleyyyFoto.jpg" alt="Bleackley Avatar"
+                                class="w-full h-full object-cover grayscale contrast-125">
+                        </div>
+                        <div>
+                            <h2 class="font-display font-bold text-xl">Bleackley</h2>
+                            <p class="text-xs text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mt-0.5">Siswa &
+                                Calon Web Developer</p>
+                        </div>
+                        <div class="h-px bg-zinc-200 dark:bg-zinc-800 w-full"></div>
+                        <!-- Social Media Links (Active & Interactive) -->
+                        <div class="flex items-center justify-center gap-3.5">
+                            <a href="https://www.tiktok.com/@nanajadeh?_r=1&_t=ZS-98D0gBJPpa8" target="_blank"
+                                rel="noopener noreferrer"
+                                class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-900 dark:hover:bg-white hover:text-white dark:hover:text-black text-zinc-700 dark:text-zinc-300 transition-all duration-200"
+                                title="Tiktok">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.68 6.34 6.34 0 0 0 9.34 22a6.34 6.34 0 0 0 6.34-6.34V9.37a8.16 8.16 0 0 0 4.91 1.63V7.55a4.85 4.85 0 0 1-1-.86z" />
+                                </svg>
+                            </a>
+                            <a href="https://www.instagram.com/nandbleackley?igsh=MTgzMXQ4anZiaWN0NQ==" target="_blank"
+                                rel="noopener noreferrer"
+                                class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-900 dark:hover:bg-white hover:text-white dark:hover:text-black text-zinc-700 dark:text-zinc-300 transition-all duration-200"
+                                title="Instagram">
+                                <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                                </svg>
+                            </a>
+                            <a href="https://wa.me/qr/D4ZFAHM222KTC1" target="_blank" rel="noopener noreferrer"
+                                class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-900 dark:hover:bg-white hover:text-white dark:hover:text-black text-zinc-700 dark:text-zinc-300 transition-all duration-200"
+                                title="WhatsApp">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                                </svg>
+                            </a>
+                            <a href="mailto:sansan2010maret@gmail.com"
+                                class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-900 dark:hover:bg-white hover:text-white dark:hover:text-black text-zinc-700 dark:text-zinc-300 transition-all duration-200"
+                                title="Kirim Email">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right column: Bio, Experience, & Skills -->
+                <div class="lg:col-span-8 space-y-8">
+                    <div class="space-y-4">
+                        <h3 class="font-display font-bold text-2xl tracking-tight">Biografi Singkat</h3>
+                        <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed font-light text-base">
+                            Saya adalah seorang pelajar yang memiliki ketertarikan tinggi di bidang teknologi informasi
+                            dan dunia pengembangan web. Berawal dari rasa penasaran tentang bagaimana sebuah halaman web
+                            dibangun, saya mulai mempelajari dasar-dasar pemrograman secara otodidak.
+                        </p>
+                        <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed font-light text-base">
+                            Di samping kecintaan saya pada baris-baris kode, saya juga menyukai seni tata bahasa dalam
+                            Bahasa Indonesia. Menurut saya, struktur kode pemrograman dan keindahan tata bahasa sastra
+                            memiliki kemiripan yang indah: keduanya membutuhkan aturan yang presisi untuk menciptakan
+                            sesuatu yang bermakna.
+                        </p>
+                    </div>
+
+                    <!-- Skills visual tags -->
+                    <div class="space-y-4">
+                        <h3 class="font-display font-bold text-xl tracking-tight">Keahlian & Teknologi</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <div
+                                class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 px-4 py-3 rounded-lg flex items-center space-x-2.5">
+                                <i data-lucide="html5" class="w-5 h-5 text-zinc-500"></i>
+                                <span class="font-medium text-sm">HTML5</span>
+                            </div>
+                            <div
+                                class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 px-4 py-3 rounded-lg flex items-center space-x-2.5">
+                                <i data-lucide="code" class="w-5 h-5 text-zinc-500"></i>
+                                <span class="font-medium text-sm">CSS3 / Tailwind</span>
+                            </div>
+                            <div
+                                class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 px-4 py-3 rounded-lg flex items-center space-x-2.5">
+                                <i data-lucide="terminal" class="w-5 h-5 text-zinc-500"></i>
+                                <span class="font-medium text-sm">JavaScript</span>
+                            </div>
+                            <div
+                                class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 px-4 py-3 rounded-lg flex items-center space-x-2.5">
+                                <i data-lucide="server" class="w-5 h-5 text-zinc-500"></i>
+                                <span class="font-medium text-sm">Node.js Basics</span>
+                            </div>
+                            <div
+                                class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 px-4 py-3 rounded-lg flex items-center space-x-2.5">
+                                <i data-lucide="layout" class="w-5 h-5 text-zinc-500"></i>
+                                <span class="font-medium text-sm">UI/UX Design</span>
+                            </div>
+                            <div
+                                class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 px-4 py-3 rounded-lg flex items-center space-x-2.5">
+                                <i data-lucide="git-branch" class="w-5 h-5 text-zinc-500"></i>
+                                <span class="font-medium text-sm">Git & GitHub</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Pendidikan -->
+                    <div class="space-y-4">
+                        <h3 class="font-display font-bold text-xl tracking-tight">Riwayat Pendidikan</h3>
+                        <div class="relative border-l border-zinc-200 dark:border-zinc-800 ml-3.5 space-y-6">
+                            <!-- Timeline Item 1 -->
+                            <div class="relative pl-7">
+                                <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-zinc-900 dark:bg-white">
+                                </div>
+                                <span
+                                    class="text-xs text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-semibold">2024
+                                    - Sekarang</span>
+                                <h4 class="font-display font-bold text-base mt-0.5">Sekolah Menengah Atas (SMA)</h4>
+                                <p class="text-sm text-zinc-500 mt-0.5">Fokus pada peminatan Matematika & Ilmu
+                                    Pengetahuan Alam (MIPA) serta aktif dalam klub teknologi.</p>
+                            </div>
+                            <!-- Timeline Item 2 -->
+                            <div class="relative pl-7">
+                                <div
+                                    class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-zinc-300 dark:bg-zinc-800">
+                                </div>
+                                <span
+                                    class="text-xs text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-semibold">2021
+                                    - 2024</span>
+                                <h4 class="font-display font-bold text-base mt-0.5">Sekolah Menengah Pertama (SMP)</h4>
+                                <p class="text-sm text-zinc-500 mt-0.5">Mulai mengenal pemecahan masalah (logic solving)
+                                    dan algoritma dasar komputer melalui ekstrakurikuler coding.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hubungi Saya Form -->
+                    <div
+                        class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/30 p-6 rounded-xl space-y-4">
+                        <h3 class="font-display font-bold text-lg">Hubungi Saya / Tinggalkan Pesan</h3>
+                        <form id="contact-form" onsubmit="submitForm(event)" class="space-y-3.5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                                <input type="text" id="contact-name" placeholder="Nama Anda" required
+                                    class="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-zinc-900 dark:focus:border-white transition-colors">
+                                <input type="email" id="contact-email" placeholder="Email Anda" required
+                                    class="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-zinc-900 dark:focus:border-white transition-colors">
+                            </div>
+                            <textarea id="contact-message" placeholder="Pesan Anda..." rows="3" required
+                                class="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-zinc-900 dark:focus:border-white transition-colors resize-none"></textarea>
+                            <button type="submit"
+                                class="px-5 py-2.5 rounded-lg bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 text-xs font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-colors cursor-pointer">
+                                Kirim Pesan
+                            </button>
+                        </form>
+                        <div id="contact-success"
+                            class="hidden text-xs text-emerald-500 font-semibold flex items-center space-x-2 pt-2 transition-all">
+                            <i data-lucide="check-circle" class="w-4 h-4"></i>
+                            <span>Terima kasih! Pesan Anda telah berhasil dikirim (simulasi).</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer
+        class="border-t border-zinc-200 dark:border-zinc-850 bg-zinc-100 dark:bg-zinc-950 py-8 relative z-10 transition-colors duration-300">
+        <div
+            class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Brand description -->
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-zinc-900 dark:bg-white flex items-center justify-center">
+                    <span class="text-white dark:text-black font-display font-extrabold text-sm">F</span>
+                </div>
+                <span class="font-display font-semibold text-sm tracking-tight">&copy; 2026 Bleackley. | SMA Cinta Kasih
+                    Tzu Chi.</span>
+            </div>
+
+            <!-- Social links (Footer) -->
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="GitHub">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="LinkedIn">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="Instagram">
+                    <i data-lucide="instagram" class="w-4 h-4"></i>
+                </a>
+                <a href="mailto:Bleackley@email.com"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                    title="Kirim Email">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

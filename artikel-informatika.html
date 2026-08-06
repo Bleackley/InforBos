@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel Informatika | Bleackley</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Artikel komprehensif tentang teori, pilar keilmuan, dan implementasi teknologi komputer.">
+    <meta name="author" content="Bleackley">
+
+    <!-- Google Fonts: Outfit (Heading) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS v4 (Browser Compiler) -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- Lucide Icons for clean vector icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Style Configurations -->
+    <link rel="stylesheet" type="text/tailwindcss" href="style.css">
+
+    <!-- Immediate theme application to prevent FOUC -->
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+    <!-- Web Application Logic Script (Vanilla JS) -->
+    <script src="app.js" defer></script>
+</head>
+
+<body
+    class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 font-sans min-h-screen transition-colors duration-300 flex flex-col selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-black">
+
+    <!-- Top Glow Overlay for dark mode premium aesthetic -->
+    <div
+        class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[300px] bg-gradient-to-b from-zinc-200/30 to-transparent dark:from-zinc-900/40 opacity-70 blur-3xl rounded-full">
+    </div>
+
+    <!-- Navigation Header (Glassmorphic) -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-md transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center space-x-2.5 group">
+                <div
+                    class="w-9 h-9 rounded-lg bg-zinc-900 dark:bg-white flex items-center justify-center transition-all duration-300 group-hover:rotate-12">
+                    <span class="text-white dark:text-black font-display font-extrabold text-lg">F</span>
+                </div>
+                <span
+                    class="font-display font-bold text-xl tracking-tight text-zinc-900 dark:text-white">Bleackley</span>
+            </a>
+
+            <!-- Desktop Navigation Menu -->
+            <nav
+                class="hidden md:flex items-center space-x-1 bg-zinc-100 dark:bg-zinc-900/60 p-1.5 rounded-full border border-zinc-200/50 dark:border-zinc-800/50">
+                <a href="index.html" id="nav-dashboard"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Dashboard
+                </a>
+                <a href="profil.html" id="nav-profil"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Profil
+                </a>
+                <a href="informatika.html" id="nav-informatika"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 shadow-sm">
+                    Informatika
+                </a>
+                <a href="bahasa.html" id="nav-bahasa-indonesia"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Bahasa Indonesia
+                </a>
+                <a href="jadwal.html" id="nav-jadwal"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Jadwal
+                </a>
+            </nav>
+
+            <!-- Utility Buttons (Theme Toggle & Mobile Menu Toggle) -->
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" onclick="toggleTheme()"
+                    class="p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 transition-all duration-200"
+                    aria-label="Toggle dark mode">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-zinc-100"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-zinc-900"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-toggle" onclick="toggleMobileMenu()"
+                    class="md:hidden p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200"
+                    aria-label="Open navigation menu">
+                    <i data-lucide="menu" id="menu-icon" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 px-4 py-4 space-y-2 transition-all duration-300">
+            <a href="index.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> <span>Dashboard</span>
+            </a>
+            <a href="profil.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="user" class="w-5 h-5"></i> <span>Profil</span>
+            </a>
+            <a href="informatika.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3 bg-zinc-100 dark:bg-zinc-900">
+                <i data-lucide="binary" class="w-5 h-5"></i> <span>Informatika</span>
+            </a>
+            <a href="bahasa.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="book-open" class="w-5 h-5"></i> <span>Bahasa Indonesia</span>
+            </a>
+            <a href="jadwal.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="calendar-days" class="w-5 h-5"></i> <span>Jadwal</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative z-10">
+
+        <!-- ================= ARTIKEL INFORMATIKA SECTION ================= -->
+        <section id="artikel-informatika-section" class="section-fade space-y-8">
+            <!-- Header section with back button -->
+            <div class="border-b border-zinc-200 dark:border-zinc-800 pb-6 space-y-4">
+                <a href="informatika.html"
+                    class="inline-flex items-center space-x-2 text-xs font-semibold text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors cursor-pointer">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span>Kembali ke Informatika</span>
+                </a>
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                    <div>
+                        <h1 class="font-display font-extrabold text-3xl sm:text-4xl tracking-tight">Menjelajahi Dunia
+                            Informatika</h1>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-sm mt-1">Artikel komprehensif tentang teori,
+                            pilar keilmuan, dan implementasi teknologi komputer.</p>
+                    </div>
+                    <!-- Font adjustment utilities -->
+                    <div class="flex gap-2.5">
+                        <button onclick="changeArticleFontSize(-1)"
+                            class="p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
+                            title="Kecilkan Ukuran Font">A-</button>
+                        <button onclick="changeArticleFontSize(1)"
+                            class="p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
+                            title="Besarkan Ukuran Font">A+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading progress bar -->
+            <div class="w-full h-1 bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+                <div id="read-progress" class="h-full bg-zinc-900 dark:bg-white w-0 transition-all duration-75"></div>
+            </div>
+
+            <!-- Content Layout: TOC on left (desktop), Article on right -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+                <!-- Left Sidebar: Table of Contents & Quick Summary -->
+                <div class="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
+                    <div
+                        class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-4 shadow-sm">
+                        <h3 class="font-display font-bold text-sm uppercase tracking-wider text-zinc-400">Daftar Isi
+                        </h3>
+                        <nav class="space-y-2 text-sm">
+                            <a href="#art-definisi" onclick="scrollToArticleSection('art-definisi')"
+                                class="toc-link block py-1 text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors font-medium border-l-2 border-transparent pl-3">1.
+                                Definisi & Pengantar</a>
+                            <a href="#art-sejarah" onclick="scrollToArticleSection('art-sejarah')"
+                                class="toc-link block py-1 text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors font-medium border-l-2 border-transparent pl-3">2.
+                                Sejarah Singkat</a>
+                            <a href="#art-pilar" onclick="scrollToArticleSection('art-pilar')"
+                                class="toc-link block py-1 text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors font-medium border-l-2 border-transparent pl-3">3.
+                                5 Pilar Utama Keilmuan</a>
+                            <a href="#art-ai" onclick="scrollToArticleSection('art-ai')"
+                                class="toc-link block py-1 text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors font-medium border-l-2 border-transparent pl-3">4.
+                                Informatika di Era AI</a>
+                            <a href="#art-prospek" onclick="scrollToArticleSection('art-prospek')"
+                                class="toc-link block py-1 text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors font-medium border-l-2 border-transparent pl-3">5.
+                                Masa Depan & Karir</a>
+                        </nav>
+                    </div>
+
+                    <div
+                        class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-3">
+                        <h3 class="font-display font-bold text-sm uppercase tracking-wider text-zinc-400">Detail Info
+                        </h3>
+                        <div class="space-y-2 text-xs text-zinc-500 dark:text-zinc-400">
+                            <div class="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-900">
+                                <span>Penulis</span>
+                                <span class="font-semibold text-zinc-800 dark:text-zinc-200">Bleackley</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-900">
+                                <span>Estimasi Baca</span>
+                                <span class="font-semibold text-zinc-800 dark:text-zinc-200">5-7 Menit</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-900">
+                                <span>Topik Utama</span>
+                                <span class="font-semibold text-zinc-800 dark:text-zinc-200">Teknologi, Logika,
+                                    AI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: The Article Content -->
+                <div
+                    class="lg:col-span-8 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/10 p-6 sm:p-8 rounded-2xl shadow-sm">
+                    <article id="article-detail-content"
+                        class="text-zinc-800 dark:text-zinc-200 leading-relaxed font-serif space-y-6 transition-all duration-200"
+                        style="font-size: 16px;">
+
+                        <!-- Heading -->
+                        <div class="space-y-2 border-b border-zinc-200/60 dark:border-zinc-800 pb-4">
+                            <h2
+                                class="font-display font-bold text-2xl sm:text-3xl text-zinc-950 dark:text-white not-italic tracking-tight leading-tight">
+                                Informatika: Menguak Fondasi, Pilar Utama, dan Perannya dalam Peradaban Digital
+                            </h2>
+                            <div class="flex items-center space-x-2 text-xs font-mono text-zinc-500 font-sans">
+                                <span>Diterbitkan: Juli 2026</span>
+                                <span>•</span>
+                                <span>Pelajaran: Informatika Kelas XI</span>
+                            </div>
+                        </div>
+
+                        <!-- Section 1 -->
+                        <section id="art-definisi" class="space-y-3 scroll-mt-20">
+                            <h3
+                                class="font-display font-bold text-xl text-zinc-950 dark:text-white font-sans tracking-tight">
+                                1. Definisi & Pengantar</h3>
+                            <p>
+                                Secara etimologis, istilah <strong>Informatika</strong> berasal dari bahasa Prancis
+                                <em>informatique</em>, yang merupakan gabungan kata <em>information</em> (informasi) dan
+                                <em>automatique</em> (otomatis). Dalam bahasa Inggris, bidang ini sering disepadankan
+                                dengan <em>Informatics</em> atau secara lebih operasional dengan <em>Computer
+                                    Science</em> (Ilmu Komputer) dan <em>Information Technology</em> (Teknologi
+                                Informasi).
+                            </p>
+                            <p>
+                                Secara umum, informatika didefinisikan sebagai disiplin ilmu ilmiah dan praktis yang
+                                mempelajari struktur, perilaku, dan interaksi dari sistem komputasi alami maupun buatan,
+                                serta pemrosesan, penyimpanan, representasi, dan komunikasi data atau informasi secara
+                                otomatis menggunakan perangkat keras komputer.
+                            </p>
+                            <p>
+                                Di abad ke-21 ini, informatika bukan lagi sekadar alat bantu administrasi, melainkan
+                                telah berevolusi menjadi motor penggerak peradaban manusia. Hampir tidak ada sektor
+                                kehidupan modern—mulai dari kesehatan, keuangan, transportasi, seni, hingga
+                                pendidikan—yang tidak tersentuh oleh sistem komputasi.
+                            </p>
+                        </section>
+
+                        <!-- Section 2 -->
+                        <section id="art-sejarah" class="space-y-3 scroll-mt-20">
+                            <h3
+                                class="font-display font-bold text-xl text-zinc-950 dark:text-white font-sans tracking-tight">
+                                2. Sejarah Singkat Perkembangan Informatika</h3>
+                            <p>
+                                Perkembangan ilmu informatika tidak terjadi secara instan, melainkan melalui transisi
+                                panjang yang dapat dibagi menjadi beberapa fase penting:
+                            </p>
+                            <ul class="list-disc pl-5 space-y-2 text-sm font-sans text-zinc-600 dark:text-zinc-400">
+                                <li>
+                                    <strong>Era Pra-Komputer Elektronik (Sebelum Abad ke-20):</strong> Ditandai dengan
+                                    penemuan alat hitung mekanis seperti abakus dan mesin analitis oleh Charles Babbage
+                                    (yang dijuluki Bapak Komputer) serta tulisan algoritma pertama oleh Ada Lovelace.
+                                </li>
+                                <li>
+                                    <strong>Fase Teoretis (1930-an - 1940-an):</strong> Pemikiran revolusioner Alan
+                                    Turing mengenai "Turing Machine" menjadi fondasi teori komputasi modern dan mesin
+                                    universal yang melandasi logika pemrosesan data komputer saat ini.
+                                </li>
+                                <li>
+                                    <strong>Era Komputer Tabung Vakum & Transistor (1950-an - 1960-an):</strong>
+                                    Lahirnya komputer komersial pertama seperti ENIAC dan UNIVAC. Transisi dari tabung
+                                    hampa udara ke transistor secara drastis memperkecil ukuran fisik komputer dan
+                                    melipatgandakan kinerjanya.
+                                </li>
+                                <li>
+                                    <strong>Era Internet & Personal Computer (1970-an - 1990-an):</strong> Penemuan
+                                    sirkuit terpadu (microchip), kelahiran sistem operasi seperti UNIX dan DOS, serta
+                                    perkembangan World Wide Web (WWW) oleh Tim Berners-Lee yang mengubah komputer dari
+                                    mesin pengolah angka terisolasi menjadi gerbang jaringan global.
+                                </li>
+                                <li>
+                                    <strong>Era Komputasi Awan, Ponsel Pintar, & Kecerdasan Buatan (2000-an -
+                                        Sekarang):</strong> Akses informasi instan di genggaman tangan, big data, dan
+                                    dominasi algoritma deep learning yang mampu melakukan tugas kognitif manusia.
+                                </li>
+                            </ul>
+                        </section>
+
+                        <!-- Section 3 -->
+                        <section id="art-pilar" class="space-y-3 scroll-mt-20">
+                            <h3
+                                class="font-display font-bold text-xl text-zinc-950 dark:text-white font-sans tracking-tight">
+                                3. Lima Pilar Utama Keilmuan Informatika</h3>
+                            <p>
+                                Untuk memahami luasnya spektrum informatika, kurikulum akademik umumnya membaginya ke
+                                dalam lima pilar dasar:
+                            </p>
+
+                            <div class="space-y-4 pt-2">
+                                <!-- Pilar 1 -->
+                                <div
+                                    class="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800">
+                                    <h4
+                                        class="font-display font-bold text-base text-zinc-900 dark:text-white font-sans">
+                                        A. Sistem Komputer (Computer Systems)</h4>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
+                                        Mempelajari perangkat keras (hardware) dan interaksinya dengan perangkat lunak
+                                        (software) tingkat rendah. Fokusnya mencakup arsitektur CPU, manajemen memori
+                                        (RAM), organisasi penyimpanan data, serta sistem operasi (seperti Linux,
+                                        Windows, macOS).
+                                    </p>
+                                </div>
+                                <!-- Pilar 2 -->
+                                <div
+                                    class="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800">
+                                    <h4
+                                        class="font-display font-bold text-base text-zinc-900 dark:text-white font-sans">
+                                        B. Jaringan Komputer & Internet (Computer Networks & Internet)</h4>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
+                                        Mengkaji bagaimana berbagai perangkat komputer dapat saling terhubung dan
+                                        berkomunikasi. Aspek utamanya mencakup topologi jaringan, protokol komunikasi
+                                        data (TCP/IP), keamanan data saat ditransmisikan, dan infrastruktur internet.
+                                    </p>
+                                </div>
+                                <!-- Pilar 3 -->
+                                <div
+                                    class="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800">
+                                    <h4
+                                        class="font-display font-bold text-base text-zinc-900 dark:text-white font-sans">
+                                        C. Algoritma & Pemrograman (Algorithms & Programming)</h4>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
+                                        Inti dari pemecahan masalah dalam komputasi. Mengajarkan bagaimana menyusun
+                                        langkah logis penyelesaian masalah (algoritma) dan menerjemahkannya ke dalam
+                                        sintaks bahasa pemrograman seperti JavaScript, Python, C++, atau Java agar dapat
+                                        dijalankan oleh mesin.
+                                    </p>
+                                </div>
+                                <!-- Pilar 4 -->
+                                <div
+                                    class="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800">
+                                    <h4
+                                        class="font-display font-bold text-base text-zinc-900 dark:text-white font-sans">
+                                        D. Analisis Data & Ilmu Data (Data Analysis & Data Science)</h4>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
+                                        Mempelajari pengumpulan, pembersihan, pengolahan, pemodelan, dan penarikan
+                                        kesimpulan dari data dalam volume besar. Menggunakan dasar statistika matematika
+                                        dikombinasikan dengan kode program untuk menemukan pola tersembunyi yang berguna
+                                        bagi keputusan bisnis atau sains.
+                                    </p>
+                                </div>
+                                <!-- Pilar 5 -->
+                                <div
+                                    class="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800">
+                                    <h4
+                                        class="font-display font-bold text-base text-zinc-900 dark:text-white font-sans">
+                                        E. Dampak Sosial Informatika (Social Impacts of Computing)</h4>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
+                                        Mengkaji etika, hukum, serta implikasi sosial dari implementasi teknologi
+                                        informasi. Isu utama meliputi privasi data pengguna, bias algoritma, ancaman
+                                        pengangguran massal akibat otomatisasi, penipuan siber, dan kesenjangan akses
+                                        digital.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Section 4 -->
+                        <section id="art-ai" class="space-y-3 scroll-mt-20">
+                            <h3
+                                class="font-display font-bold text-xl text-zinc-950 dark:text-white font-sans tracking-tight">
+                                4. Informatika di Era Kecerdasan Buatan (AI)</h3>
+                            <p>
+                                Saat ini kita sedang menyaksikan lompatan besar peradaban digital berkat kematangan
+                                teknologi <strong>Artificial Intelligence</strong>. Kecerdasan buatan, machine learning,
+                                dan model bahasa besar (seperti GPT, Claude, Gemini) bukan lagi sekadar eksperimen sains
+                                melainkan telah melebur dalam kehidupan praktis.
+                            </p>
+                            <p>
+                                Dalam konteks ini, keahlian informatika mengalami pergeseran paradigma. Pemrogram tidak
+                                lagi hanya menulis instruksi baris per baris secara kaku, melainkan merancang sistem
+                                yang dapat "belajar" secara mandiri dari miliaran sampel data. Teknik seperti <em>neural
+                                    networks</em> dan pembelajaran penguatan (reinforcement learning) memungkinkan
+                                komputer meniru pola kognitif otak manusia, mengenali gambar medis untuk diagnosis
+                                penyakit, menerjemahkan bahasa secara real-time, hingga mengemudikan kendaraan otonom
+                                tanpa supir.
+                            </p>
+                            <blockquote
+                                class="border-l-4 border-zinc-900 dark:border-white pl-4 italic my-6 text-zinc-600 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-900/40 py-2">
+                                "Pemahaman komputasi dasar dan literasi kecerdasan buatan bukan lagi keahlian opsional.
+                                Di masa depan, hal ini akan setara dengan kemampuan menulis dan membaca dasar yang
+                                menentukan bagaimana seseorang berpartisipasi aktif dalam tatanan masyarakat global."
+                            </blockquote>
+                        </section>
+
+                        <!-- Section 5 -->
+                        <section id="art-prospek" class="space-y-3 scroll-mt-20">
+                            <h3
+                                class="font-display font-bold text-xl text-zinc-950 dark:text-white font-sans tracking-tight">
+                                5. Masa Depan, Karir, dan Kesimpulan</h3>
+                            <p>
+                                Mempelajari informatika membuka pintu karir yang sangat luas dan menjanjikan di panggung
+                                industri global. Beberapa peran profesional masa depan yang sangat dibutuhkan meliputi:
+                            </p>
+                            <ul class="list-disc pl-5 space-y-2 text-sm font-sans text-zinc-600 dark:text-zinc-400">
+                                <li><strong>Software Engineer / Web Developer:</strong> Perancang dan pengembang sistem
+                                    aplikasi atau situs web interaktif.</li>
+                                <li><strong>Data Scientist / ML Engineer:</strong> Spesialis penemu pola data dan
+                                    perancang sistem berbasis kecerdasan buatan.</li>
+                                <li><strong>Cybersecurity Specialist:</strong> Penjaga keamanan sistem, jaringan, dan
+                                    database penting dari ancaman peretas.</li>
+                                <li><strong>Cloud Architect:</strong> Perancang tata kelola penyimpanan dan sistem
+                                    operasional server awan (cloud computing).</li>
+                            </ul>
+                            <p>
+                                <strong>Kesimpulan:</strong> Informatika adalah ilmu masa depan. Pemahaman yang kuat
+                                tentang dasar informatika bukan hanya mempersiapkan generasi muda untuk menjadi pekerja
+                                industri teknologi, melainkan membekali mereka dengan pola pikir komputasional
+                                (computational thinking)—kemampuan memecahkan masalah besar secara terstruktur, logis,
+                                dan kreatif yang berguna di bidang kehidupan manapun.
+                            </p>
+                        </section>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Footer -->
+    <footer
+        class="border-t border-zinc-200 dark:border-zinc-850 bg-zinc-100 dark:bg-zinc-950 py-8 relative z-10 transition-colors duration-300">
+        <div
+            class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Brand description -->
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-zinc-900 dark:bg-white flex items-center justify-center">
+                    <span class="text-white dark:text-black font-display font-extrabold text-sm">F</span>
+                </div>
+                <span class="font-display font-semibold text-sm tracking-tight">&copy; 2026 Bleackley. | SMA Cinta Kasih Tzu Chi.</span>
+            </div>
+
+            <!-- Social links (Footer) -->
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="GitHub">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="LinkedIn">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="Instagram">
+                    <i data-lucide="instagram" class="w-4 h-4"></i>
+                </a>
+                <a href="mailto:Bleackley@email.com"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                    title="Kirim Email">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

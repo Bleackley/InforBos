@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Bahasa Indonesia | Bleackley</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Kumpulan Tugas Bahasa Indonesia Bleackley. Apresiasi karya sastra tulis, analisis esai, dan ekspresi puisi digital.">
+    <meta name="author" content="Bleackley">
+
+    <!-- Google Fonts: Outfit (Heading) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS v4 (Browser Compiler) -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- Lucide Icons for clean vector icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Style Configurations -->
+    <link rel="stylesheet" type="text/tailwindcss" href="style.css">
+
+    <!-- Immediate theme application to prevent FOUC -->
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+    <!-- Web Application Logic Script (Vanilla JS) -->
+    <script src="app.js" defer></script>
+</head>
+
+<body
+    class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 font-sans min-h-screen transition-colors duration-300 flex flex-col selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-black">
+
+    <!-- Top Glow Overlay for dark mode premium aesthetic -->
+    <div
+        class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[300px] bg-gradient-to-b from-zinc-200/30 to-transparent dark:from-zinc-900/40 opacity-70 blur-3xl rounded-full">
+    </div>
+
+    <!-- Navigation Header (Glassmorphic) -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-md transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center space-x-2.5 group">
+                <div
+                    class="w-9 h-9 rounded-lg bg-zinc-900 dark:bg-white flex items-center justify-center transition-all duration-300 group-hover:rotate-12">
+                    <span class="text-white dark:text-black font-display font-extrabold text-lg">F</span>
+                </div>
+                <span
+                    class="font-display font-bold text-xl tracking-tight text-zinc-900 dark:text-white">Bleackley</span>
+            </a>
+
+            <!-- Desktop Navigation Menu -->
+            <nav
+                class="hidden md:flex items-center space-x-1 bg-zinc-100 dark:bg-zinc-900/60 p-1.5 rounded-full border border-zinc-200/50 dark:border-zinc-800/50">
+                <a href="index.html" id="nav-dashboard"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Dashboard
+                </a>
+                <a href="profil.html" id="nav-profil"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Profil
+                </a>
+                <a href="informatika.html" id="nav-informatika"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Informatika
+                </a>
+                <a href="bahasa.html" id="nav-bahasa-indonesia"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 shadow-sm">
+                    Bahasa Indonesia
+                </a>
+                <a href="jadwal.html" id="nav-jadwal"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Jadwal
+                </a>
+            </nav>
+
+            <!-- Utility Buttons (Theme Toggle & Mobile Menu Toggle) -->
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" onclick="toggleTheme()"
+                    class="p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 transition-all duration-200"
+                    aria-label="Toggle dark mode">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-zinc-100"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-zinc-900"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-toggle" onclick="toggleMobileMenu()"
+                    class="md:hidden p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200"
+                    aria-label="Open navigation menu">
+                    <i data-lucide="menu" id="menu-icon" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 px-4 py-4 space-y-2 transition-all duration-300">
+            <a href="index.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> <span>Dashboard</span>
+            </a>
+            <a href="profil.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="user" class="w-5 h-5"></i> <span>Profil</span>
+            </a>
+            <a href="informatika.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="binary" class="w-5 h-5"></i> <span>Informatika</span>
+            </a>
+            <a href="bahasa.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3 bg-zinc-100 dark:bg-zinc-900">
+                <i data-lucide="book-open" class="w-5 h-5"></i> <span>Bahasa Indonesia</span>
+            </a>
+            <a href="jadwal.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="calendar-days" class="w-5 h-5"></i> <span>Jadwal</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative z-10">
+
+        <!-- ================= BAHASA INDONESIA SECTION ================= -->
+        <section id="bahasa-indonesia-section" class="section-fade space-y-12">
+            <div
+                class="border-b border-zinc-200 dark:border-zinc-800 pb-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                <div>
+                    <h1 class="font-display font-extrabold text-3xl sm:text-4xl tracking-tight">Kumpulan Tugas Bahasa
+                        Indonesia</h1>
+                    <p class="text-zinc-500 dark:text-zinc-400 text-sm mt-1">Apresiasi karya sastra tulis, analisis
+                        esai, dan ekspresi puisi digital.</p>
+                </div>
+
+                <!-- Essay & Sastra control panel -->
+                <div class="flex gap-2.5">
+                    <button onclick="changeFontSize(-1)"
+                        class="p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
+                        title="Kecilkan Ukuran Font">A-</button>
+                    <button onclick="changeFontSize(1)"
+                        class="p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
+                        title="Besarkan Ukuran Font">A+</button>
+                </div>
+            </div>
+
+            <!-- Main grid container for Indonesian tasks -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <!-- Left: Essay Reader Panel -->
+                <div class="lg:col-span-8 space-y-6">
+                    <div
+                        class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/10 p-6 sm:p-8 rounded-2xl shadow-sm space-y-6">
+                        <!-- Top details -->
+                        <div
+                            class="flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-400 border-b border-zinc-200/60 dark:border-zinc-800 pb-4">
+                            <span class="font-semibold uppercase tracking-wider">Tugas 01 • Esai Argumentatif</span>
+                            <span>Membaca: 3 menit</span>
+                        </div>
+
+                        <!-- Essay Article Content with adjustable font size -->
+                        <article id="essay-content"
+                            class="text-zinc-800 dark:text-zinc-200 leading-relaxed font-serif space-y-5 transition-all duration-200"
+                            style="font-size: 16px;">
+                            <h2
+                                class="font-display font-bold text-2xl text-zinc-950 dark:text-white not-italic tracking-tight leading-tight">
+                                Dampak Integrasi Kecerdasan Buatan (AI) dalam Pendidikan Modern</h2>
+                            <div class="flex items-center space-x-2 text-xs font-mono text-zinc-500 font-sans">
+                                <span>Ditulis oleh: Bleackley</span>
+                                <span>•</span>
+                                <span>Tanggal: Juli 2026</span>
+                            </div>
+
+                            <p>
+                                Kehadiran teknologi Kecerdasan Buatan (Artificial Intelligence/AI) telah menyentuh
+                                hampir setiap lini kehidupan manusia, tidak terkecuali bidang pendidikan. Dari platform
+                                bimbingan belajar berbasis algoritma pintar hingga alat bantu penulisan otomatis, AI
+                                kini tidak lagi menjadi sebatas wacana futuristik, melainkan perangkat harian siswa dan
+                                pengajar. Namun, seiring dengan kemudahannya, integrasi AI memunculkan dilema
+                                fundamental yang patut kita telaah secara kritis.
+                            </p>
+                            <p>
+                                Di satu sisi, AI menawarkan efisiensi personalisasi pembelajaran yang luar biasa. Setiap
+                                pelajar memiliki kecepatan belajar yang unik; AI mampu memetakan kekuatan dan kelemahan
+                                siswa secara individu, lalu menyajikan materi latihan yang sesuai dengan kebutuhan
+                                spesifik mereka. Pendekatan ini membebaskan guru dari keterbatasan administratif,
+                                memberikan ruang lebih bagi mereka untuk fokus pada pengembangan karakter serta
+                                interaksi sosial di dalam kelas.
+                            </p>
+                            <p
+                                class="border-l-4 border-zinc-900 dark:border-white pl-4 italic my-6 text-zinc-600 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-900/40 py-2">
+                                "Teknologi bukanlah pengganti peran guru, melainkan sebuah jembatan untuk
+                                mengamplifikasi kapasitas berpikir analitis siswa agar melampaui batas ruang kelas
+                                tradisional."
+                            </p>
+                            <p>
+                                Namun, di sisi lain, ketergantungan berlebih terhadap sistem AI dikhawatirkan dapat
+                                menumpulkan kemampuan berpikir kritis serta kreativitas orisinal siswa. Apabila setiap
+                                tantangan matematika atau penulisan esai dapat dijawab secara instan oleh generatif
+                                kecerdasan buatan, proses perjuangan intelektual—yang krusial bagi pembentukan koneksi
+                                sinapsis otak—akan hilang.
+                            </p>
+                            <p>
+                                Oleh karena itu, kunci keberhasilan pemanfaatan AI dalam pendidikan tidak terletak pada
+                                pelarangan atau kebebasan mutlak tanpa pengawasan, melainkan pada pembentukan regulasi
+                                edukatif yang bijak. Kita harus mendidik siswa agar memandang AI sebagai rekan
+                                berdiskusi pemancing ide, bukan sebagai pembuat keputusan akhir atau mesin penjawab
+                                tugas sekolah.
+                            </p>
+                        </article>
+                        <!-- KONTENER MATERI TEKS LHO -->
+                        <div
+                            class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/10 p-6 sm:p-8 rounded-2xl shadow-sm space-y-6">
+                            <!-- Top details -->
+                            <div
+                                class="flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-400 border-b border-zinc-200/60 dark:border-zinc-800 pb-4">
+                                <span class="font-semibold uppercase tracking-wider">Tugas 04 • Ringkasan Materi Teks
+                                    LHO</span>
+                                <span>Membaca: 3 menit</span>
+                            </div>
+
+                            <!-- Content Body -->
+                            <div class="space-y-4 text-zinc-800 dark:text-zinc-200">
+                                <h3 class="font-display font-bold text-xl text-zinc-950 dark:text-white tracking-tight">
+                                    Memahami Teks Laporan Hasil Observasi (LHO)
+                                </h3>
+                                <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                                    Teks Laporan Hasil Observasi adalah teks yang berisi penjabaran umum mengenai suatu
+                                    objek atau fenomena berdasarkan hasil pengamatan (observasi) secara sistematis dan
+                                    objektif.
+                                </p>
+
+                                <!-- Struktur Teks LHO -->
+                                <div class="space-y-3 pt-2">
+                                    <span
+                                        class="font-semibold uppercase tracking-wider text-xs text-zinc-900 dark:text-zinc-200 block">Struktur
+                                        Utama Teks LHO:</span>
+                                    <ul class="list-disc pl-4 space-y-1.5 text-xs text-zinc-500 dark:text-zinc-400">
+                                        <li><strong class="text-zinc-800 dark:text-zinc-200">Pernyataan Umum
+                                                (Klasifikasi):</strong> Bagian pembuka yang berisi pembuka atau
+                                            pengantar mengenai objek yang akan dilaporkan.</li>
+                                        <li><strong class="text-zinc-800 dark:text-zinc-200">Deskripsi Bagian:</strong>
+                                            Rincian isi atau perincian bagian-bagian dari objek yang diamati secara
+                                            lebih spesifik.</li>
+                                        <li><strong class="text-zinc-800 dark:text-zinc-200">Deskripsi Manfaat:</strong>
+                                            Penjelasan mengenai fungsi atau manfaat dari objek yang diamati bagi
+                                            kehidupan atau lingkungan.</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Ciri Kebahasaan -->
+                                <div
+                                    class="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/80 dark:border-zinc-800 text-xs space-y-2">
+                                    <span
+                                        class="font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-200 block">Kaidah
+                                        Kebahasaan:</span>
+                                    <ul class="list-disc pl-4 space-y-1 text-zinc-500 dark:text-zinc-400">
+                                        <li>Menggunakan frasa nomina (kelompok kata benda) pada pengelompokan objek.
+                                        </li>
+                                        <li>Menggunakan verba relasional (seperti <em>ialah</em>, <em>merupakan</em>,
+                                            <em>adalah</em>).
+                                        </li>
+                                        <li>Menggunakan kalimat definisi dan kalimat deskripsi.</li>
+                                    </ul>
+                                </div>
+                                <!-- KONTENER MATERI HIKAYAT -->
+                                <div
+                                    class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/10 p-6 sm:p-8 rounded-2xl shadow-sm space-y-6">
+                                    <!-- Top details -->
+                                    <div
+                                        class="flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-400 border-b border-zinc-200/60 dark:border-zinc-800 pb-4">
+                                        <span class="font-semibold uppercase tracking-wider">Tugas 05 • Apresiasi Sastra
+                                            Klasik (Hikayat)</span>
+                                        <span>Membaca: 3 menit</span>
+                                    </div>
+
+                                    <!-- Content Body -->
+                                    <div class="space-y-4 text-zinc-800 dark:text-zinc-200">
+                                        <h3
+                                            class="font-display font-bold text-xl text-zinc-950 dark:text-white tracking-tight">
+                                            Mengenal Karakteristik dan Unsur Hikayat
+                                        </h3>
+                                        <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                                            Hikayat adalah salah satu bentuk karya sastra prosa lama, terutama dalam
+                                            bahasa Melayu, yang berisi tentang kisah, cerita, dan dongeng mengenai
+                                            kehebatan maupun kepahlawanan tokoh lengkap dengan keajaiban, kesaktian,
+                                            serta keanehan sang tokoh.
+                                        </p>
+
+                                        <!-- Karakteristik Hikayat -->
+                                        <div class="space-y-3 pt-2">
+                                            <span
+                                                class="font-semibold uppercase tracking-wider text-xs text-zinc-900 dark:text-zinc-200 block">Karakteristik
+                                                / Ciri-Ciri Hikayat:</span>
+                                            <ul
+                                                class="list-disc pl-4 space-y-1.5 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <li><strong class="text-zinc-800 dark:text-zinc-200">Kemustahilan
+                                                        (Fantastis):</strong> Banyak mengandung unsur ajaib atau hal-hal
+                                                    yang tidak masuk akal di luar nalar manusia biasa.</li>
+                                                <li><strong class="text-zinc-800 dark:text-zinc-200">Anonim:</strong>
+                                                    Pengarang aslinya tidak diketahui atau tidak bernama (milik bersama
+                                                    masyarakat masa lalu).</li>
+                                                <li><strong class="text-zinc-800 dark:text-zinc-200">Istana
+                                                        Sentris:</strong> Latar tempat cerita berpusat di lingkungan
+                                                    istana, kerajaan, raja, atau kaum bangsawan.</li>
+                                                <li><strong class="text-zinc-800 dark:text-zinc-200">Statis:</strong>
+                                                    Alur dan bentuk cerita cenderung tetap, tidak banyak mengalami
+                                                    perubahan dari waktu ke waktu.</li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Unsur Kebahasaan / Kaidah -->
+                                        <div
+                                            class="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/80 dark:border-zinc-800 text-xs space-y-2">
+                                            <span
+                                                class="font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-200 block">Kaidah
+                                                Kebahasaan Khas:</span>
+                                            <ul class="list-disc pl-4 space-y-1 text-zinc-500 dark:text-zinc-400">
+                                                <li>Menggunakan banyak kata penghubung (konjungsi) urutan waktu/kejadian
+                                                    di awal kalimat (misal: <em>maka</em>, <em>Hatta</em>,
+                                                    <em>sebermula</em>).
+                                                </li>
+                                                <li>Menggunakan bahasa Melayu klasik yang bercampur dengan kosa kata
+                                                    arkais (kata-kata lama yang kini jarang digunakan, seperti
+                                                    <em>beroleh</em>, <em>taufan</em>, <em>hamba</em>).
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- Right: Literature Analysis & Poetry Cards -->
+                <div class="lg:col-span-4 space-y-8">
+                    <!-- Tabbed Literature Analysis -->
+                    <div
+                        class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-4">
+                        <div class="space-y-1">
+                            <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">Tugas 02 • Analisis
+                                Sastra</span>
+                            <h3 class="font-display font-bold text-lg">Analisis Cerpen: Robohnya Surau Kami</h3>
+                        </div>
+
+                        <!-- Analysis mini tab links -->
+                        <div
+                            class="grid grid-cols-3 gap-1 bg-zinc-150 dark:bg-zinc-950 p-1 rounded-lg border border-zinc-200 dark:border-zinc-800 text-[10px] font-semibold">
+                            <button onclick="switchAnalysisTab('tema')" id="btn-tab-tema"
+                                class="analysis-tab-btn py-1.5 rounded bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white transition-all cursor-pointer">Tema</button>
+                            <button onclick="switchAnalysisTab('tokoh')" id="btn-tab-tokoh"
+                                class="analysis-tab-btn py-1.5 rounded text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-all cursor-pointer">Tokoh</button>
+                            <button onclick="switchAnalysisTab('nilai')" id="btn-tab-nilai"
+                                class="analysis-tab-btn py-1.5 rounded text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-all cursor-pointer">Nilai
+                                Moral</button>
+                        </div>
+
+                        <!-- Tab Content containers -->
+                        <div
+                            class="text-xs leading-relaxed text-zinc-500 dark:text-zinc-400 pt-2 min-h-[120px] flex items-start">
+                            <div id="content-tab-tema" class="analysis-tab-content space-y-2">
+                                <p class="font-semibold text-zinc-900 dark:text-white text-sm">Tema: Kritik Keagamaan
+                                    Sosial</p>
+                                <p>Cerpen legendaris karya A.A. Navis ini mengangkat tema kritik tajam terhadap
+                                    pemahaman agama secara sempit yang melupakan kewajiban sosial dan kemainan di dunia
+                                    nyata.</p>
+                            </div>
+                            <div id="content-tab-tokoh" class="analysis-tab-content hidden space-y-2">
+                                <p class="font-semibold text-zinc-900 dark:text-white text-sm">Tokoh Utama & Watak</p>
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li><strong class="text-zinc-800 dark:text-zinc-200">Kakek (Garbot)</strong>: Taat
+                                        beribadah tetapi rapuh jiwanya dan mudah terpengaruh oleh ucapan orang lain.
+                                    </li>
+                                    <li><strong class="text-zinc-800 dark:text-zinc-200">Ajo Sidi</strong>: Penggosip,
+                                        penjual bualan cerdas yang sindirannya memicu tragedi bunuh diri Kakek.</li>
+                                </ul>
+                            </div>
+                            <div id="content-tab-nilai" class="analysis-tab-content hidden space-y-2">
+                                <p class="font-semibold text-zinc-900 dark:text-white text-sm">Amanat & Nilai Kehidupan
+                                </p>
+                                <p>Tuhan menyukai hamba-Nya yang beribadah secara seimbang antara kesalehan ritual
+                                    pribadi dan kesalehan sosial bermasyarakat, serta giat bekerja mencari nafkah.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poetry Slider/Box -->
+                    <div
+                        class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-6">
+                        <div class="space-y-1">
+                            <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">Tugas 03 • Apresiasi
+                                Puisi</span>
+                            <h3 class="font-display font-bold text-lg">Puisi Digital Monokrom</h3>
+                        </div>
+
+
+
+                        <!-- Interactive Poem Slider container -->
+                        <div
+                            class="bg-zinc-50 dark:bg-zinc-950/60 p-5 rounded-lg border border-zinc-200 dark:border-zinc-800 text-center font-serif py-8 min-h-[160px] flex items-center justify-center relative">
+                            <!-- Slides -->
+                            <div id="poem-slide-1" class="poem-slide space-y-3">
+                                <p class="text-sm italic leading-relaxed text-zinc-700 dark:text-zinc-300">
+                                    "Dalam sunyi baris sintaks,<br>
+                                    tersembunyi sejuta makna bahasa.<br>
+                                    Titik koma yang membatasi,<br>
+                                    seperti nafas dalam bait bait sunyi."
+                                </p>
+                                <span class="block text-[10px] font-sans uppercase tracking-widest text-zinc-400">Bait 1
+                                    • Jaringan Kata</span>
+                            </div>
+                            <div id="poem-slide-2" class="poem-slide hidden space-y-3">
+                                <p class="text-sm italic leading-relaxed text-zinc-700 dark:text-zinc-300">
+                                    "Kita menulis pada layar datar,<br>
+                                    merajut masa depan di antara biner.<br>
+                                    Satu nol satu nol bergetar,<br>
+                                    mengabadikan ide agar tak pudar."
+                                </p>
+                                <span class="block text-[10px] font-sans uppercase tracking-widest text-zinc-400">Bait 2
+                                    • Logika Asa</span>
+                            </div>
+                        </div>
+
+                        <!-- TUGAS 09: ARTIKEL CISCO PACKET TRACER (Artikel) -->
+                        <div
+                            class="lg:col-span-6 info-card info-teori border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-6">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">Artikel 03 •
+                                        Jaringan</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded text-[10px] font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-400">Artikel</span>
+                                </div>
+                                <h3 class="font-display font-bold text-xl">Artikel Anekdot</h3>
+                                <p class="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
+                                    Anekdot:
+                                    <br>
+                                    Ringkasan materi Teks Anekdot:
+                                    <br>
+                                    Pengertian: Cerita singkat yang lucu, menarik, dan berkesan, biasanya berdasarkan
+                                    kejadian nyata atau sindiran terhadap fenomena sosial/kebijakan publik.
+                                    <br>
+                                    Tujuan: Untuk menyampaikan kritik, sindiran, atau pesan moral secara halus,
+                                    menghibur, dan tidak menyinggung secara langsung.
+                                    <br>
+                                    Ciri-Ciri Utama:
+                                    <br>
+                                    Bersifat humor atau lelucon (lucu).
+                                    <br>
+                                    Bersifat menyindir (kritikan).
+                                    <br>
+                                    Memiliki tokoh nyata atau umum.
+                                    <br>
+                                    Alur cerita berfokus pada kejadian unik/kejadian tak biasa.
+                                    <br>
+                                    Struktur Teks Anekdot:
+                                    <br>
+                                    Abstraksi: Bagian awal/pembuka untuk memberikan gambaran isi cerita.
+                                    <br>
+                                    Orientasi: Pengenalan latar belakang atau awal mula kejadian.
+                                    <br>
+                                    Krisis: Munculnya pokok masalah/peristiwa unik yang tidak biasa.
+                                    <br>
+                                    Reaksi: Cara tokoh menyelesaikan masalah atau respons terhadap krisis (biasanya
+                                    mengandung unsur humor/kritik).
+                                    <br>
+                                    Koda: Penutup cerita yang berupa kesimpulan, tanda berakhirnya kisah, atau pesan
+                                    moral.
+                                </p>
+                            </div>
+                            <!-- Slider control button -->
+                            <div class="flex justify-center gap-2">
+                                <button onclick="prevPoemSlide()"
+                                    class="p-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors cursor-pointer">
+                                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="nextPoemSlide()"
+                                    class="p-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors cursor-pointer">
+                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </main>
+
+
+    <!-- Global Footer -->
+    <footer
+        class="border-t border-zinc-200 dark:border-zinc-850 bg-zinc-100 dark:bg-zinc-950 py-8 relative z-10 transition-colors duration-300">
+        <div
+            class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Brand description -->
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-zinc-900 dark:bg-white flex items-center justify-center">
+                    <span class="text-white dark:text-black font-display font-extrabold text-sm">F</span>
+                </div>
+                <span class="font-display font-semibold text-sm tracking-tight">&copy; 2026 Bleackley. | SMA Cinta Kasih
+                    Tzu Chi.</span>
+            </div>
+
+            <!-- Social links (Footer) -->
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="GitHub">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="LinkedIn">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="Instagram">
+                    <i data-lucide="instagram" class="w-4 h-4"></i>
+                </a>
+                <a href="mailto:Bleackley@email.com"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                    title="Kirim Email">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

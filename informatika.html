@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Informatika | Bleackley</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Kumpulan Tugas Informatika Bleackley. Eksplorasi kode program, aplikasi sederhana, dan logika pemrosesan data komputer.">
+    <meta name="author" content="Bleackley">
+
+    <!-- Google Fonts: Outfit (Heading) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS v4 (Browser Compiler) -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- Lucide Icons for clean vector icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Style Configurations -->
+    <link rel="stylesheet" type="text/tailwindcss" href="style.css">
+
+    <!-- Immediate theme application to prevent FOUC -->
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+    <!-- Web Application Logic Script (Vanilla JS) -->
+    <script src="app.js" defer></script>
+</head>
+
+<body
+    class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 font-sans min-h-screen transition-colors duration-300 flex flex-col selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-black">
+
+    <!-- Top Glow Overlay for dark mode premium aesthetic -->
+    <div
+        class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[300px] bg-gradient-to-b from-zinc-200/30 to-transparent dark:from-zinc-900/40 opacity-70 blur-3xl rounded-full">
+    </div>
+
+    <!-- Navigation Header (Glassmorphic) -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-md transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center space-x-2.5 group">
+                <div
+                    class="w-9 h-9 rounded-lg bg-zinc-900 dark:bg-white flex items-center justify-center transition-all duration-300 group-hover:rotate-12">
+                    <span class="text-white dark:text-black font-display font-extrabold text-lg">F</span>
+                </div>
+                <span
+                    class="font-display font-bold text-xl tracking-tight text-zinc-900 dark:text-white">Bleackley</span>
+            </a>
+
+            <!-- Desktop Navigation Menu -->
+            <nav
+                class="hidden md:flex items-center space-x-1 bg-zinc-100 dark:bg-zinc-900/60 p-1.5 rounded-full border border-zinc-200/50 dark:border-zinc-800/50">
+                <a href="index.html" id="nav-dashboard"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Dashboard
+                </a>
+                <a href="profil.html" id="nav-profil"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Profil
+                </a>
+                <a href="informatika.html" id="nav-informatika"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 shadow-sm">
+                    Informatika
+                </a>
+                <a href="bahasa.html" id="nav-bahasa-indonesia"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Bahasa Indonesia
+                </a>
+                <a href="jadwal.html" id="nav-jadwal"
+                    class="nav-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:text-zinc-950 dark:hover:text-white">
+                    Jadwal
+                </a>
+            </nav>
+
+            <!-- Utility Buttons (Theme Toggle & Mobile Menu Toggle) -->
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" onclick="toggleTheme()"
+                    class="p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 transition-all duration-200"
+                    aria-label="Toggle dark mode">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-zinc-100"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-zinc-900"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-toggle" onclick="toggleMobileMenu()"
+                    class="md:hidden p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200"
+                    aria-label="Open navigation menu">
+                    <i data-lucide="menu" id="menu-icon" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 px-4 py-4 space-y-2 transition-all duration-300">
+            <a href="index.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> <span>Dashboard</span>
+            </a>
+            <a href="profil.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="user" class="w-5 h-5"></i> <span>Profil</span>
+            </a>
+            <a href="informatika.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3 bg-zinc-100 dark:bg-zinc-900">
+                <i data-lucide="binary" class="w-5 h-5"></i> <span>Informatika</span>
+            </a>
+            <a href="bahasa.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="book-open" class="w-5 h-5"></i> <span>Bahasa Indonesia</span>
+            </a>
+            <a href="jadwal.html"
+                class="w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center space-x-3">
+                <i data-lucide="calendar-days" class="w-5 h-5"></i> <span>Jadwal</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative z-10">
+
+        <!-- ================= INFORMATIKA SECTION ================= -->
+        <section id="informatika-section" class="section-fade space-y-12">
+            <div
+                class="border-b border-zinc-200 dark:border-zinc-800 pb-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                <div>
+                    <h1 class="font-display font-extrabold text-3xl sm:text-4xl tracking-tight">Kumpulan Tugas
+                        Informatika</h1>
+                    <p class="text-zinc-500 dark:text-zinc-400 text-sm mt-1">Eksplorasi kode program, aplikasi
+                        sederhana, dan logika pemrosesan data komputer.</p>
+                </div>
+                <!-- Mini Tab Filter for tasks -->
+                <div
+                    class="flex gap-1.5 bg-zinc-100 dark:bg-zinc-900/60 p-1 rounded-lg border border-zinc-200/50 dark:border-zinc-800/50 self-start">
+                    <button onclick="filterInformatika('all')" id="btn-info-all"
+                        class="info-filter-btn px-3 py-1 rounded-md text-xs font-medium bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white transition-all shadow-sm">Semua</button>
+                    <button onclick="filterInformatika('app')" id="btn-info-app"
+                        class="info-filter-btn px-3 py-1 rounded-md text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-all">Aplikasi</button>
+                    <button onclick="filterInformatika('logic')" id="btn-info-logic"
+                        class="info-filter-btn px-3 py-1 rounded-md text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-all">Algoritma</button>
+                    <button onclick="filterInformatika('teori')" id="btn-info-teori"
+                        class="info-filter-btn px-3 py-1 rounded-md text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-all">Artikel</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+                <!-- TUGAS 01: KALKULATOR WEB (Aplikasi) -->
+                <div
+                    class="lg:col-span-6 info-card info-app border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-6">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">Tugas 01 • Aplikasi
+                                Web</span>
+                            <span
+                                class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">Aplikasi</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl">Kalkulator Web Sederhana</h3>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
+                            Aplikasi kalkulator mini yang berjalan langsung di browser. Dibuat menggunakan manipulasi
+                            DOM JavaScript untuk kalkulasi aritmatika.
+                        </p>
+                    </div>
+
+                    <!-- Embedded Mini Calculator Component -->
+                    <div
+                        class="border border-zinc-300 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-950 p-4 rounded-xl max-w-[280px] mx-auto space-y-3 shadow-md">
+                        <div
+                            class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-3 py-2.5 rounded-lg text-right">
+                            <div id="calc-expression"
+                                class="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono h-4 overflow-hidden truncate">
+                            </div>
+                            <div id="calc-screen"
+                                class="text-xl font-bold font-mono tracking-tight text-zinc-900 dark:text-white truncate">
+                                0</div>
+                        </div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <button onclick="calcClear()"
+                                class="p-3 bg-zinc-200 dark:bg-zinc-900 hover:bg-zinc-300 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">C</button>
+                            <button onclick="calcInput('/')"
+                                class="p-3 bg-zinc-200 dark:bg-zinc-900 hover:bg-zinc-300 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">/</button>
+                            <button onclick="calcInput('*')"
+                                class="p-3 bg-zinc-200 dark:bg-zinc-900 hover:bg-zinc-300 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">*</button>
+                            <button onclick="calcInput('-')"
+                                class="p-3 bg-zinc-200 dark:bg-zinc-900 hover:bg-zinc-300 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">-</button>
+                            <button onclick="calcInput('7')"
+                                class="p-3 bg-white dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">7</button>
+                            <button onclick="calcInput('8')"
+                                class="p-3 bg-white dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">8</button>
+                            <button onclick="calcInput('9')"
+                                class="p-3 bg-white dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">9</button>
+                            <button onclick="calcInput('+')"
+                                class="p-3 bg-zinc-200 dark:bg-zinc-900 hover:bg-zinc-300 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center row-span-2 flex items-center justify-center cursor-pointer">+</button>
+                            <button onclick="calcInput('4')"
+                                class="p-3 bg-white dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">4</button>
+                            <button onclick="calcInput('5')"
+                                class="p-3 bg-white dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">5</button>
+                            <button onclick="calcInput('6')"
+                                class="p-3 bg-white dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">6</button>
+                            <button onclick="calcInput('1')"
+                                class="p-3 bg-white dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">1</button>
+                            <button onclick="calcInput('2')"
+                                class="p-3 bg-white dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">2</button>
+                            <button onclick="calcInput('3')"
+                                class="p-3 bg-white dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">3</button>
+                            <button onclick="calcCalculate()"
+                                class="p-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 text-sm font-bold rounded-lg font-mono text-center row-span-2 flex items-center justify-center cursor-pointer">=</button>
+                            <button onclick="calcInput('0')"
+                                class="p-3 bg-white dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center col-span-2 cursor-pointer">0</button>
+                            <button onclick="calcInput('.')"
+                                class="p-3 bg-white dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm font-semibold rounded-lg font-mono text-center cursor-pointer">.</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TUGAS 02: KONVERTER SISTEM BILANGAN (Aplikasi) -->
+                <div
+                    class="lg:col-span-6 info-card info-app border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-6">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">Tugas 02 • Tools
+                                Komputasi</span>
+                            <span
+                                class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">Aplikasi</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl">Kalkulator Konversi Sistem Bilangan</h3>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
+                            Aplikasi interaktif untuk mengonversi angka antar sistem bilangan dasar komputer: Biner
+                            (Radiks 2), Desimal (Radiks 10), Oktal (Radiks 8), dan Heksadesimal (Radiks 16).
+                        </p>
+                    </div>
+
+                    <button onclick="openInfoModal('app-converter')"
+                        class="w-full py-3 px-4 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 font-semibold text-xs flex items-center justify-center gap-2 hover:opacity-90 transition-all cursor-pointer">
+                        <i data-lucide="calculator" class="w-4 h-4"></i>
+                        <span>Buka Aplikasi Konversi Bilangan</span>
+                    </button>
+                </div>
+
+                <!-- TUGAS 03: SIMULATOR KRIPTOGRAFI (Aplikasi) -->
+                <div
+                    class="lg:col-span-6 info-card info-app border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-6">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">Tugas 03 • Security
+                                Tools</span>
+                            <span
+                                class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">Aplikasi</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl">Simulator Enkripsi Kriptografi</h3>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
+                            Aplikasi penyandian teks rahasia menggunakan pergeseran Caesar Cipher interaktif. Pengguna
+                            dapat menguji enkripsi pesan dan mengubah pergeseran kunci secara real-time.
+                        </p>
+                    </div>
+
+                    <button onclick="openInfoModal('app-crypto')"
+                        class="w-full py-3 px-4 rounded-xl border border-zinc-900 dark:border-white text-zinc-900 dark:text-white font-semibold text-xs flex items-center justify-center gap-2 hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-zinc-950 transition-all cursor-pointer">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        <span>Buka Aplikasi Enkripsi Kriptografi</span>
+                    </button>
+                </div>
+
+                <!-- TUGAS 04: BUBBLE SORT VISUALIZER (Algoritma) -->
+                <div
+                    class="lg:col-span-6 info-card info-logic border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-6">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">Tugas 04 •
+                                Visualizer Data</span>
+                            <span
+                                class="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-500/10 text-blue-600 dark:text-blue-400">Algoritma</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl">Visualizer Algoritma Bubble Sort</h3>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
+                            Simulasi visual yang mendemonstrasikan bagaimana algoritma Bubble Sort membandingkan dan
+                            menukar elemen array untuk mengurutkan kumpulan data secara menaik.
+                        </p>
+                    </div>
+
+                    <div
+                        class="border border-zinc-300 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-950 p-4 rounded-xl space-y-4 shadow-md">
+                        <div id="sort-container"
+                            class="h-28 flex items-end justify-between gap-1.5 px-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-2 relative">
+                        </div>
+                        <div class="flex items-center justify-between gap-2.5">
+                            <button onclick="resetSortArray()" id="btn-sort-reset"
+                                class="px-3 py-1.5 rounded-lg border border-zinc-300 dark:border-zinc-800 text-[11px] font-semibold hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors cursor-pointer">
+                                Acak Array
+                            </button>
+                            <span id="sort-status" class="text-[10px] text-zinc-500 font-mono">Status: Siap</span>
+                            <button onclick="startBubbleSort()" id="btn-sort-start"
+                                class="px-3.5 py-1.5 rounded-lg bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 text-[11px] font-bold hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-colors cursor-pointer">
+                                Mulai Urutkan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TUGAS 05: BINARY SEARCH VISUALIZER (Algoritma) -->
+                <div
+                    class="lg:col-span-6 info-card info-logic border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-6">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">Tugas 05 • Algoritma
+                                Pencarian</span>
+                            <span
+                                class="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-500/10 text-blue-600 dark:text-blue-400">Algoritma</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl">Simulator Algoritma Binary Search</h3>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
+                            Simulasi langkah demi langkah algoritma pencarian biner dengan membelah ruang pencarian
+                            menjadi setengah (Kompleksitas O(log n)).
+                        </p>
+                    </div>
+
+                    <button onclick="openInfoModal('alg-search')"
+                        class="w-full py-3 px-4 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 font-semibold text-xs flex items-center justify-center gap-2 hover:opacity-90 transition-all cursor-pointer">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                        <span>Jalankan Simulator Algoritma Binary Search</span>
+                    </button>
+                </div>
+
+                <!-- TUGAS 06: ARSITEKTUR KOMPUTER (Algoritma/Logika) -->
+                <div
+                    class="lg:col-span-6 info-card info-logic border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-6">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">Tugas 06 • Logika
+                            Sistem</span>
+                        <span
+                            class="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-500/10 text-blue-600 dark:text-blue-400">Algoritma
+                            & Logika</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl">Arsitektur & Logika Komputer</h3>
+                    <p class="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
+                        Interaksi komponen utama hardware: CPU (ALU/Control Unit), Memory (RAM), Secondary Storage, dan
+                        Bus Sistem.
+                    </p>
+
+                    <div class="space-y-2">
+                        <div
+                            class="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden bg-white dark:bg-zinc-950">
+                            <button onclick="toggleAccordion('acc-cpu')"
+                                class="w-full px-4 py-3 text-left flex items-center justify-between font-semibold text-xs hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors cursor-pointer">
+                                <span>1. Central Processing Unit (CPU)</span>
+                                <i data-lucide="chevron-down" id="icon-acc-cpu" class="w-4 h-4"></i>
+                            </button>
+                            <div id="content-acc-cpu" class="max-h-0 overflow-hidden transition-all duration-300">
+                                <div class="p-4 text-xs text-zinc-500 border-t border-zinc-100 dark:border-zinc-900">
+                                    CPU mengeksekusi instruksi aritmatika & logika via ALU serta mengontrol aliran
+                                    instruksi.
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden bg-white dark:bg-zinc-950">
+                            <button onclick="toggleAccordion('acc-ram')"
+                                class="w-full px-4 py-3 text-left flex items-center justify-between font-semibold text-xs hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors cursor-pointer">
+                                <span>2. Random Access Memory (RAM)</span>
+                                <i data-lucide="chevron-down" id="icon-acc-ram" class="w-4 h-4"></i>
+                            </button>
+                            <div id="content-acc-ram" class="max-h-0 overflow-hidden transition-all duration-300">
+                                <div class="p-4 text-xs text-zinc-500 border-t border-zinc-100 dark:border-zinc-900">
+                                    RAM menyimpan data instruksi aplikasi sementara dengan kecepatan sangat tinggi.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TUGAS 07: ARTIKEL LENGKAP INFORMATIKA (Artikel) -->
+                <div
+                    class="lg:col-span-12 info-card info-teori border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div class="space-y-1">
+                            <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">Artikel Utama •
+                                Literasi Digital</span>
+                            <h3 class="font-display font-bold text-xl">Artikel : Topologi
+                            </h3>
+                        </div>
+                        <span
+                            class="px-3 py-1 rounded bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs font-semibold border border-purple-500/20 self-start sm:self-center font-mono">Artikel
+                            Reader</span>
+                    </div>
+                    <!-- Gambar Artikel -->
+                    <img src="Topologi.png" alt="Topologi Jaringan"
+                        class="w-full h-[350px] object-cover rounded-xl border border-zinc-300 dark:border-zinc-800">
+
+                    <!-- Isi Artikel -->
+                    <div class="space-y-5 text-zinc-600 dark:text-zinc-300 text-sm leading-8 text-justify">
+
+                        <p>
+                            <strong>Topologi jaringan</strong> adalah tata letak atau susunan hubungan antar
+                            perangkat
+                            dalam sebuah jaringan komputer. Topologi menentukan bagaimana komputer, server,
+                            switch, router, dan perangkat lainnya saling terhubung untuk bertukar data.
+                            Pemilihan topologi yang tepat sangat berpengaruh terhadap kecepatan komunikasi,
+                            kemudahan pengelolaan, biaya instalasi, dan keamanan jaringan. Oleh karena itu,
+                            topologi menjadi salah satu komponen penting dalam perancangan sebuah sistem jaringan.
+                        </p>
+
+                        <p>
+                            Terdapat beberapa jenis topologi jaringan yang umum digunakan, yaitu Bus, Star,
+                            Ring, Mesh, Tree, dan Hybrid. Topologi Bus menggunakan satu kabel utama sebagai
+                            media komunikasi sehingga biaya pembuatannya relatif murah. Topologi Star
+                            menghubungkan setiap komputer ke perangkat pusat seperti switch sehingga lebih
+                            mudah dikelola. Ring membentuk jalur melingkar, sedangkan Mesh menghubungkan
+                            setiap perangkat secara langsung sehingga memiliki tingkat keandalan yang sangat
+                            tinggi. Tree dan Hybrid merupakan pengembangan dari beberapa topologi untuk
+                            memenuhi kebutuhan jaringan yang lebih besar.
+                        </p>
+
+                        <p>
+                            Setiap jenis topologi memiliki kelebihan dan kekurangannya masing-masing.
+                            Topologi Star menjadi pilihan yang paling banyak digunakan karena mudah
+                            melakukan perawatan dan jika satu komputer mengalami kerusakan, komputer lain
+                            tetap dapat berfungsi dengan normal. Sebaliknya, Topologi Mesh menawarkan
+                            keamanan dan keandalan yang tinggi, tetapi membutuhkan biaya instalasi yang
+                            jauh lebih besar. Oleh sebab itu, pemilihan topologi harus disesuaikan dengan
+                            jumlah perangkat, anggaran, serta kebutuhan suatu organisasi atau perusahaan.
+                        </p>
+
+                        <p>
+                            Di era digital saat ini, topologi jaringan memiliki peran yang sangat penting
+                            dalam mendukung berbagai aktivitas, seperti akses internet, pembelajaran daring,
+                            komunikasi perusahaan, hingga layanan komputasi awan (cloud computing). Dengan
+                            memahami konsep topologi jaringan, seseorang dapat merancang jaringan yang lebih
+                            efisien, stabil, mudah dikembangkan, dan mampu memberikan performa terbaik sesuai
+                            kebutuhan pengguna.
+                        </p>
+
+                    </div>
+                    <a href="artikel-informatika.html"
+                        class="px-5 py-2.5 rounded-lg bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 text-xs font-bold hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all duration-200 inline-flex items-center space-x-2.5 shadow-md cursor-pointer self-start">
+                        <span>Buka Artikel Lengkap</span>
+                        <i data-lucide="book-open" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- TUGAS 08: ARTIKEL REGULASI UU ITE (Artikel) -->
+                <div
+                    class="lg:col-span-6 info-card info-teori border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-6">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">Artikel 02 • Etika
+                                Digital</span>
+                            <span
+                                class="px-2 py-0.5 rounded text-[10px] font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-400">Artikel</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl">Kriptografi</h3>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
+                            <!-- Gambar Artikel -->
+                            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80"
+                                alt="Kriptografi"
+                                class="w-full h-[350px] object-cover rounded-xl border border-zinc-300 dark:border-zinc-800">
+
+                            <!-- Isi Artikel -->
+                        <div class="space-y-5 text-zinc-600 dark:text-zinc-300 text-sm leading-8 text-justify">
+
+                            <p>
+                                <strong>Kriptografi</strong> adalah ilmu yang mempelajari teknik untuk melindungi
+                                informasi agar tidak dapat diakses oleh pihak yang tidak berhak. Dalam dunia
+                                digital, kriptografi digunakan untuk mengubah data asli (plaintext) menjadi
+                                bentuk yang tidak dapat dibaca (ciphertext) melalui proses enkripsi. Data
+                                tersebut hanya dapat dikembalikan ke bentuk semula menggunakan proses dekripsi
+                                dengan kunci yang sesuai. Teknologi ini menjadi dasar penting dalam menjaga
+                                keamanan informasi di internet.
+                            </p>
+
+                            <p>
+                                Kriptografi digunakan pada berbagai layanan yang sering kita gunakan setiap
+                                hari, seperti aplikasi perbankan, media sosial, e-commerce, email, hingga
+                                aplikasi pesan instan seperti WhatsApp. Saat pengguna mengirim pesan atau
+                                melakukan transaksi, data akan dienkripsi sehingga tidak mudah disadap oleh
+                                pihak lain. Dengan demikian, informasi pribadi seperti kata sandi, nomor
+                                rekening, maupun data penting lainnya tetap terlindungi selama proses
+                                pengiriman.
+                            </p>
+
+                            <p>
+                                Dalam penerapannya, kriptografi memiliki beberapa komponen penting, yaitu
+                                plaintext, ciphertext, algoritma enkripsi, dan kunci (key). Algoritma
+                                menentukan cara data diubah menjadi kode rahasia, sedangkan kunci berfungsi
+                                untuk mengunci dan membuka data tersebut. Semakin kuat algoritma dan panjang
+                                kunci yang digunakan, semakin sulit pula data tersebut diretas oleh pihak
+                                yang tidak bertanggung jawab.
+                            </p>
+
+                            <p>
+                                Seiring berkembangnya teknologi informasi, peran kriptografi menjadi semakin
+                                penting dalam menjaga keamanan data dan privasi pengguna. Hampir seluruh
+                                sistem digital modern memanfaatkan kriptografi untuk mencegah pencurian data,
+                                pemalsuan identitas, dan penyalahgunaan informasi. Oleh karena itu,
+                                mempelajari kriptografi merupakan langkah penting bagi siswa informatika agar
+                                memahami bagaimana keamanan data diterapkan dalam kehidupan sehari-hari.
+                            </p>
+
+                        </div>
+                        </p>
+                    </div>
+
+                    <button onclick="openInfoModal('art-uu-ite')"
+                        class="w-full py-2.5 px-4 rounded-xl border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 font-semibold text-xs flex items-center justify-center gap-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all cursor-pointer">
+                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                        <span>Baca Artikel UU ITE</span>
+                    </button>
+                </div>
+
+                <!-- TUGAS 09: ARTIKEL CISCO PACKET TRACER (Artikel) -->
+                <div
+                    class="lg:col-span-6 info-card info-teori border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-6">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">Artikel 03 •
+                                Jaringan</span>
+                            <span
+                                class="px-2 py-0.5 rounded text-[10px] font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-400">Artikel</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl">Artikel Panduan Cisco Packet Tracer</h3>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
+                            <!-- Gambar Artikel -->
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
+                                alt="Cisco Packet Tracer"
+                                class="w-full h-[350px] object-cover rounded-xl border border-zinc-300 dark:border-zinc-800">
+
+                            <!-- Isi Artikel -->
+                        <div class="space-y-5 text-zinc-600 dark:text-zinc-300 text-sm leading-8 text-justify">
+
+                            <p>
+                                <strong>Cisco Packet Tracer</strong> adalah perangkat lunak simulasi jaringan
+                                komputer yang dikembangkan oleh Cisco Networking Academy. Aplikasi ini
+                                memungkinkan pengguna untuk merancang, membangun, dan menguji berbagai jenis
+                                topologi jaringan tanpa harus menggunakan perangkat keras seperti router,
+                                switch, maupun kabel jaringan. Karena tampilannya mudah dipahami, Cisco Packet
+                                Tracer menjadi salah satu software yang paling banyak digunakan oleh pelajar,
+                                mahasiswa, dan calon administrator jaringan.
+                            </p>
+
+                            <p>
+                                Dengan Cisco Packet Tracer, pengguna dapat membuat simulasi jaringan sesuai
+                                kebutuhan, mulai dari jaringan sederhana hingga jaringan berskala besar.
+                                Berbagai perangkat seperti komputer, server, router, switch, access point,
+                                hingga perangkat Internet of Things (IoT) dapat ditambahkan ke dalam proyek.
+                                Pengguna juga dapat melakukan konfigurasi alamat IP, routing, VLAN, DHCP,
+                                serta berbagai layanan jaringan lainnya menggunakan antarmuka grafis maupun
+                                Command Line Interface (CLI).
+                            </p>
+
+                            <p>
+                                Salah satu keunggulan Cisco Packet Tracer adalah kemampuannya menampilkan
+                                proses pengiriman data melalui fitur <em>Simulation Mode</em>. Fitur ini
+                                membantu pengguna memahami bagaimana paket data berpindah dari satu perangkat
+                                ke perangkat lainnya serta memudahkan dalam menemukan kesalahan konfigurasi.
+                                Selain itu, aplikasi ini dapat digunakan untuk berlatih sebelum menerapkan
+                                konfigurasi pada perangkat jaringan yang sebenarnya sehingga dapat mengurangi
+                                risiko kesalahan.
+                            </p>
+
+                            <p>
+                                Cisco Packet Tracer memiliki peran penting dalam pembelajaran jaringan komputer
+                                karena memberikan pengalaman praktik yang menyerupai kondisi nyata. Dengan
+                                menggunakan aplikasi ini, siswa dapat memahami konsep dasar jaringan, melatih
+                                kemampuan konfigurasi perangkat Cisco, serta mempersiapkan diri menghadapi
+                                sertifikasi jaringan seperti CCNA. Oleh karena itu, Cisco Packet Tracer menjadi
+                                salah satu perangkat lunak yang sangat bermanfaat bagi siapa saja yang ingin
+                                mempelajari dunia jaringan komputer secara lebih mendalam.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <button onclick="openInfoModal('art-cisco')"
+                        class="w-full py-2.5 px-4 rounded-xl border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 font-semibold text-xs flex items-center justify-center gap-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all cursor-pointer">
+                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                        <span>Baca Artikel Cisco Packet Tracer</span>
+                    </button>
+                </div>
+                <!-- TUGAS 10: ARTIKEL VIBE CODING -->
+                <div
+                    class="lg:col-span-12 info-card info-teori border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 p-6 rounded-xl space-y-6">
+
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div>
+                            <span class="text-xs uppercase font-bold tracking-widest text-zinc-400">
+                                Artikel 04 • Teknologi Modern
+                            </span>
+
+                            <h3 class="font-display font-bold text-2xl mt-2">
+                                Vibe Coding
+                            </h3>
+                        </div>
+
+                        <span
+                            class="px-3 py-1 rounded bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs font-semibold border border-purple-500/20">
+                            Artikel
+                        </span>
+                    </div>
+
+                    <!-- FOTO -->
+                    <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80"
+                        alt="Vibe Coding"
+                        class="w-full h-[350px] object-cover rounded-xl border border-zinc-300 dark:border-zinc-800">
+
+                    <!-- ISI ARTIKEL -->
+                    <div class="space-y-5 text-zinc-600 dark:text-zinc-300 leading-8 text-justify">
+
+                        <p>
+                            <strong>Vibe Coding</strong> merupakan istilah yang digunakan untuk menggambarkan
+                            cara membuat program dengan bantuan kecerdasan buatan (Artificial Intelligence/AI).
+                            Pada metode ini, seorang programmer tidak selalu menulis seluruh kode secara manual,
+                            melainkan cukup menjelaskan kebutuhan atau ide dalam bahasa sehari-hari. AI kemudian
+                            akan menghasilkan potongan kode yang dapat digunakan, diperbaiki, atau dikembangkan
+                            kembali sesuai kebutuhan proyek.
+                        </p>
+
+                        <p>
+                            Konsep Vibe Coding semakin populer sejak hadirnya berbagai AI seperti ChatGPT,
+                            GitHub Copilot, Gemini, dan Claude. Teknologi tersebut mampu membantu membuat
+                            fungsi, memperbaiki bug, menjelaskan kode yang sulit dipahami, hingga memberikan
+                            rekomendasi algoritma yang lebih efisien. Dengan demikian, proses pengembangan
+                            perangkat lunak menjadi lebih cepat sehingga programmer dapat lebih fokus pada
+                            penyelesaian masalah dibandingkan hanya mengetik kode.
+                        </p>
+
+                        <p>
+                            Walaupun memberikan banyak keuntungan, Vibe Coding tetap memiliki tantangan.
+                            Kode yang dihasilkan AI tidak selalu benar, aman, atau sesuai dengan kebutuhan
+                            aplikasi. Oleh karena itu, seorang programmer harus memahami dasar-dasar
+                            pemrograman agar mampu memeriksa, menguji, serta memperbaiki hasil yang diberikan
+                            AI. Kemampuan berpikir logis dan memahami algoritma tetap menjadi keterampilan
+                            yang sangat penting meskipun menggunakan bantuan teknologi modern.
+                        </p>
+
+                        <p>
+                            Di masa depan, Vibe Coding diperkirakan akan menjadi salah satu cara utama dalam
+                            mengembangkan perangkat lunak. Kolaborasi antara manusia dan AI memungkinkan
+                            terciptanya aplikasi yang lebih inovatif dalam waktu yang lebih singkat. Oleh sebab
+                            itu, pelajar informatika perlu mempelajari pemrograman sekaligus memahami cara
+                            memanfaatkan AI secara bijak, etis, dan bertanggung jawab agar teknologi tersebut
+                            benar-benar memberikan manfaat bagi masyarakat.
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Footer -->
+    <footer
+        class="border-t border-zinc-200 dark:border-zinc-850 bg-zinc-100 dark:bg-zinc-950 py-8 relative z-10 transition-colors duration-300">
+        <div
+            class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Brand description -->
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-zinc-900 dark:bg-white flex items-center justify-center">
+                    <span class="text-white dark:text-black font-display font-extrabold text-sm">F</span>
+                </div>
+                <span class="font-display font-semibold text-sm tracking-tight">&copy; 2026 Bleackley. | SMA Cinta Kasih
+                    Tzu Chi.</span>
+            </div>
+
+            <!-- Social links (Footer) -->
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="GitHub">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="LinkedIn">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors" title="Instagram">
+                    <i data-lucide="instagram" class="w-4 h-4"></i>
+                </a>
+                <a href="mailto:Bleackley@email.com"
+                    class="text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                    title="Kirim Email">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GLOBAL INTERACTIVE MODAL FOR INFORMATIKA -->
+    <div id="info-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-md">
+        <div
+            class="bg-white dark:bg-zinc-950 w-full max-w-2xl rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div
+                class="px-6 py-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between bg-zinc-50 dark:bg-zinc-900/50">
+                <div>
+                    <span id="info-modal-badge"
+                        class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-900 text-white dark:bg-white dark:text-black font-bold">Informatika</span>
+                    <h3 id="info-modal-title" class="font-display font-bold text-xl text-zinc-900 dark:text-white mt-1">
+                        Detail Item</h3>
+                </div>
+                <button onclick="closeInfoModal()"
+                    class="p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white rounded-lg cursor-pointer">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div id="info-modal-body" class="p-6 overflow-y-auto flex-grow text-zinc-800 dark:text-zinc-200">
+                <!-- Rendered by JS -->
+            </div>
+            <div
+                class="px-6 py-3 border-t border-zinc-200 dark:border-zinc-800 flex justify-end bg-zinc-50 dark:bg-zinc-900/50">
+                <button onclick="closeInfoModal()"
+                    class="px-4 py-2 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-black font-semibold text-xs hover:opacity-90 cursor-pointer">Tutup</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
